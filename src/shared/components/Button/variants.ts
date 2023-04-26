@@ -18,7 +18,7 @@ interface ButtonVariant {
 const solid: ButtonVariant = {
   enabled: {
     button: {
-      props: 'bg-primary-500 rounded-full',
+      props: 'bg-primary-500 rounded-xl',
     },
     title: {
       props: 'text-dark-gray-500 font-poppins-semi',
@@ -29,7 +29,7 @@ const solid: ButtonVariant = {
   },
   disabled: {
     button: {
-      props: 'bg-primary-500/70 rounded-full',
+      props: 'bg-primary-500/70 rounded-xl',
     },
     title: {
       props: 'text-zinc-600 font-poppins-semi',
