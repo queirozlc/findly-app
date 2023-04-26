@@ -48,7 +48,7 @@ export default function AuthButtons({ view }: AuthButtonsProps) {
           onPress={() =>
             view === 'sign-in'
               ? navigation.navigate('UsernamePasswordSignIn')
-              : navigation.navigate('SignUp')
+              : navigation.navigate('UsernamePasswordSignUp')
           }
         />
       </View>

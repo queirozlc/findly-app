@@ -72,7 +72,7 @@ export default function EmailSignInForm() {
             className="text-base font-inter-medium text-dark-gray-500"
             onPress={() => navigation.navigate('ForgotPassword')}
           >
-            Forget your password?
+            Forgot your password?
           </Text>
         </View>
       </View>

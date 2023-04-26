@@ -6,6 +6,7 @@ export type AuthPropsNavigation = {
   ForgotPassword: undefined
   ResetPassword: undefined
   UsernamePasswordSignIn: undefined
+  UsernamePasswordSignUp: undefined
 }
 
 export type AuthStackParamList = NativeStackNavigationProp<AuthPropsNavigation>
