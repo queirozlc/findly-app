@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import EmailSignInScreen from '../modules/authentication/screens/EmailSignInScreen'
 import SignInScreen from '../modules/authentication/screens/SignInScreen'
 import SignUpScreen from '../modules/authentication/screens/SignUpScreen'
 import { AuthPropsNavigation } from './types/auth-route'
@@ -15,6 +16,10 @@ export default function AuthRoutes() {
     >
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
+      <Stack.Screen
+        name="UsernamePasswordSignIn"
+        component={EmailSignInScreen}
+      />
       {/* <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name='ResetPassword' component={ResetPasswordScreen}/> */}
     </Stack.Navigator>

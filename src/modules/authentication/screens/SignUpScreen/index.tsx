@@ -8,7 +8,7 @@ export default function SignUpScreen() {
     <View className="space-y-24 flex-1 bg-white">
       <AuthBanner />
       <View className="px-8">
-        <AuthButtons view="sign-in" />
+        <AuthButtons view="sign-up" />
       </View>
       <View className="items-center">
         <SignInFooter view="sign-up" />

@@ -1,5 +1,7 @@
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 import { Image, View } from 'react-native'
+import { AuthStackParamList } from '../../../../routes/types/auth-route'
 import Button from '../../../../shared/components/Button'
 
 interface AuthButtonsProps {
@@ -7,11 +9,13 @@ interface AuthButtonsProps {
 }
 
 export default function AuthButtons({ view }: AuthButtonsProps) {
+  const navigation = useNavigation<AuthStackParamList>()
+
   return (
     <View className="space-y-4">
       <View>
         <Button
-          title={`${view !== 'sign-in' ? 'Sign In' : 'Continue'} with Google`}
+          title={`${view === 'sign-in' ? 'Sign In' : 'Continue'} with Google`}
           icon={
             <Image
               source={require('../../../../../assets/google_icon_hd.png')}
@@ -23,7 +27,7 @@ export default function AuthButtons({ view }: AuthButtonsProps) {
       </View>
       <View>
         <Button
-          title={`${view !== 'sign-in' ? 'Sign In' : 'Continue'} with Facebook`}
+          title={`${view === 'sign-in' ? 'Sign In' : 'Continue'} with Facebook`}
           icon={<FontAwesome5 name="facebook" size={24} color="white" />}
           variant="oauthFacebook"
         />
@@ -31,7 +35,7 @@ export default function AuthButtons({ view }: AuthButtonsProps) {
 
       <View>
         <Button
-          title={`${view !== 'sign-in' ? 'Sign In' : 'Continue'} with Email`}
+          title={`${view === 'sign-in' ? 'Sign In' : 'Continue'} with Email`}
           icon={
             <MaterialCommunityIcons
               name="email"
@@ -41,6 +45,11 @@ export default function AuthButtons({ view }: AuthButtonsProps) {
             />
           }
           variant="authEmail"
+          onPress={() =>
+            view === 'sign-in'
+              ? navigation.navigate('UsernamePasswordSignIn')
+              : navigation.navigate('SignUp')
+          }
         />
       </View>
     </View>
