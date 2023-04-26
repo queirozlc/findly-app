@@ -2,19 +2,33 @@ import { useNavigation } from '@react-navigation/native'
 import { Text, View } from 'react-native'
 import { AuthStackParamList } from '../../../../routes/types/auth-route'
 
-export default function SignInFooter() {
+interface SignInFooterProps {
+  view: 'sign-in' | 'sign-up'
+}
+
+export default function SignInFooter({ view }: SignInFooterProps) {
   const navigation = useNavigation<AuthStackParamList>()
+
+  const handleNavigation = () => {
+    if (view === 'sign-in') {
+      navigation.navigate('SignUp')
+    } else {
+      navigation.navigate('SignIn')
+    }
+  }
 
   return (
     <View className="items-center justify-center space-y-8 px-6">
       <View>
         <Text className="font-inter-medium text-dark-gray-500 text-base">
-          Don't have an account ?{' '}
+          {view === 'sign-in'
+            ? 'Don’t have an account ?'
+            : 'Already have an account ?'}{' '}
           <Text
             className="text-brand-violet-500 underline font-inter-bold"
-            onPress={() => navigation.navigate('SignUp')}
+            onPress={handleNavigation}
           >
-            Sign Up
+            {view === 'sign-in' ? 'Sign Up' : 'Sign In'}
           </Text>
         </Text>
       </View>

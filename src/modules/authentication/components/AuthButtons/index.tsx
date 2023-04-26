@@ -2,12 +2,16 @@ import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
 import { Image, View } from 'react-native'
 import Button from '../../../../shared/components/Button'
 
-export default function AuthButtons() {
+interface AuthButtonsProps {
+  view: 'sign-in' | 'sign-up'
+}
+
+export default function AuthButtons({ view }: AuthButtonsProps) {
   return (
     <View className="space-y-4">
       <View>
         <Button
-          title="Continue with Google"
+          title={`${view !== 'sign-in' ? 'Sign In' : 'Continue'} with Google`}
           icon={
             <Image
               source={require('../../../../../assets/google_icon_hd.png')}
@@ -19,7 +23,7 @@ export default function AuthButtons() {
       </View>
       <View>
         <Button
-          title="Continue with Facebook"
+          title={`${view !== 'sign-in' ? 'Sign In' : 'Continue'} with Facebook`}
           icon={<FontAwesome5 name="facebook" size={24} color="white" />}
           variant="oauthFacebook"
         />
@@ -27,7 +31,7 @@ export default function AuthButtons() {
 
       <View>
         <Button
-          title="Continue with Email"
+          title={`${view !== 'sign-in' ? 'Sign In' : 'Continue'} with Email`}
           icon={
             <MaterialCommunityIcons
               name="email"
