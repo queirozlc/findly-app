@@ -13,7 +13,7 @@ interface ButtonProps {
   isLoading?: boolean
   icon?: React.ReactNode
   disabled?: boolean
-  variant: 'outline' | 'solid'
+  variant: 'outline' | 'solid' | 'oauthGoogle' | 'oauthFacebook' | 'authEmail'
   styles?: TouchableOpacityProps['style']
 }
 
@@ -45,16 +45,10 @@ export default function Button({
         />
       ) : (
         <View
-          className={`flex-row flex-1 items-center justify-center space-x-2 ${
-            icon && 'mr-5'
-          }`}
+          className={`flex-row flex-1 items-center justify-center space-x-2`}
         >
           {icon}
-          <Text
-            className={`font-poppins-semi text-lg ${buttonStyle.title.props}`}
-          >
-            {title}
-          </Text>
+          <Text className={`text-lg ${buttonStyle.title.props}`}>{title}</Text>
         </View>
       )}
     </TouchableOpacity>
