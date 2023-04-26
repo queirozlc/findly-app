@@ -8,7 +8,7 @@ export default function AuthBanner() {
         className="w-full h-80 items-center justify-center"
       >
         <Image
-          source={require('../../../../../assets/logo_dark.png')}
+          source={require('../../../../../assets/logo_dark2.png')}
           style={{ resizeMode: 'cover' }}
           className="w-64 h-64"
         />
