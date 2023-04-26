@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+import AuthBanner from '../../components/AuthBanner'
 
 export default function SignInScreen() {
   return (
     <View>
-      <Text>SignInScreen</Text>
+      <AuthBanner />
     </View>
   )
 }
