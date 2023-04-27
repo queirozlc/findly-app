@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   Text,
+  TextProps,
   TouchableOpacity,
   TouchableOpacityProps,
   View,
@@ -15,6 +16,7 @@ interface ButtonProps {
   disabled?: boolean
   variant: 'outline' | 'solid' | 'oauthGoogle' | 'oauthFacebook' | 'authEmail'
   styles?: TouchableOpacityProps['style']
+  textStyles?: TextProps['style']
 }
 
 export default function Button({
@@ -25,6 +27,7 @@ export default function Button({
   disabled = false,
   variant = 'solid',
   styles,
+  textStyles,
 }: ButtonProps) {
   const buttonVariant = variants[variant]
   const buttonStyle = disabled ? buttonVariant.disabled : buttonVariant.enabled
@@ -48,7 +51,12 @@ export default function Button({
           className={`flex-row flex-1 items-center justify-center space-x-2`}
         >
           {icon}
-          <Text className={`text-lg ${buttonStyle.title.props}`}>{title}</Text>
+          <Text
+            className={`text-lg ${buttonStyle.title.props}`}
+            style={textStyles}
+          >
+            {title}
+          </Text>
         </View>
       )}
     </TouchableOpacity>

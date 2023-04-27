@@ -22,10 +22,10 @@ export default function SignInFooter({ view }: SignInFooterProps) {
       <View>
         <Text className="font-inter-medium text-dark-gray-500 text-base">
           {view === 'sign-in'
-            ? 'Don’t have an account ?'
-            : 'Already have an account ?'}{' '}
+            ? 'Don’t have an account?'
+            : 'Already have an account?'}{' '}
           <Text
-            className="text-brand-violet-500 underline font-inter-bold"
+            className="text-brand-violet-500 underline font-poppins-bold"
             onPress={handleNavigation}
           >
             {view === 'sign-in' ? 'Sign Up' : 'Sign In'}

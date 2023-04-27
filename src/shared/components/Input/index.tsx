@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import colors from 'tailwindcss/colors'
 
 interface InputProps {
   placeholder?: string
@@ -37,6 +38,8 @@ export default function Input({
         keyboardType={keyboardType}
         onChangeText={onChange}
         autoCapitalize={capitalize}
+        cursorColor={colors.zinc['800']}
+        selectionColor={colors.zinc['800']}
       />
       <TouchableOpacity
         className="absolute right-5 top-10"
