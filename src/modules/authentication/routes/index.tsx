@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import CompleteSignUpScreen from '../screens/CompleteSignUpScreen'
 import EmailSignInScreen from '../screens/EmailSignInScreen'
 import EmailSignUpScreen from '../screens/EmailSignUpScreen'
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
@@ -27,6 +28,7 @@ export default function AuthRoutes() {
         component={EmailSignUpScreen}
       />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="CompleteSignUp" component={CompleteSignUpScreen} />
     </Stack.Navigator>
   )
 }
