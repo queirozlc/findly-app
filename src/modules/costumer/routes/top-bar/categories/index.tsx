@@ -2,7 +2,7 @@ import { AntDesign, Feather } from '@expo/vector-icons'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import colors from 'tailwindcss/colors'
 import MostPopularScreen from '../../../screens/material-top-bar/MostPopularScreen'
-import CostumerBestRatedStack from '../../stack/best-rated'
+import CostumerBestSellerStack from '../../stack/best-seller'
 import { CostumerCategoriesMaterialTopTabParamList } from './types'
 
 const TopTab =
@@ -32,7 +32,7 @@ export default function CostumerMaterialTabCategories() {
           },
         }}
         name="BestSellers"
-        component={CostumerBestRatedStack}
+        component={CostumerBestSellerStack}
       />
       <TopTab.Screen
         options={{

@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { Dimensions, View } from 'react-native'
 import Button from '../../../../shared/components/Button'
-import { CostumerBestSellersNavigationProps } from '../../routes/stack/best-rated/types'
+import { CostumerBestSellersNavigationProps } from '../../routes/stack/best-seller/types'
 
 export default function MapButton() {
   const deviceWidth = Dimensions.get('window').width
