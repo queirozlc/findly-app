@@ -17,6 +17,7 @@ import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect, useState } from 'react'
 import { View } from 'react-native'
+import { RecoilRoot } from 'recoil'
 import Router from './src/shared/routes'
 
 export default function App() {
@@ -60,9 +61,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <View onLayout={onLayout} className="flex-1">
-        <Router />
-      </View>
+      <RecoilRoot>
+        <View onLayout={onLayout} className="flex-1">
+          <Router />
+        </View>
+      </RecoilRoot>
     </NavigationContainer>
   )
 }
