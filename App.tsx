@@ -17,7 +17,7 @@ import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect, useState } from 'react'
 import { View } from 'react-native'
-import Router from './src/routes'
+import Router from './src/shared/routes'
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
