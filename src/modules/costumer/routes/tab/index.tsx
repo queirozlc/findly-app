@@ -1,7 +1,8 @@
-import { Feather } from '@expo/vector-icons'
+import { Feather, FontAwesome } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import colors from 'tailwindcss/colors'
 import CostumerNavigationHeader from '../../components/CostumerNavigationHeader'
+import CostumerProfileStack from '../stack/profile'
 import CostumerMaterialTabCategories from '../top-bar/categories'
 import { CostumerBottomTabStackParamList } from './types'
 
@@ -50,16 +51,18 @@ export default function CostumerTabNavigator() {
         name="HomeCategoriesMaterialTopBar"
         component={CostumerMaterialTabCategories}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon({ color, size }) {
-            return <Feather name="user" size={size} color={color} />
+            return (
+              <FontAwesome name="user-circle-o" size={size} color={color} />
+            )
           },
         }}
         name="ProfileStack"
-        component={ProfileScreen}
-      /> */}
+        component={CostumerProfileStack}
+      />
     </Tab.Navigator>
   )
 }

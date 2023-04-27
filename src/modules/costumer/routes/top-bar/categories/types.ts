@@ -1,8 +1,7 @@
 import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tabs'
 
 export type CostumerCategoriesMaterialTopTabParamList = {
-  Home: undefined
-  BestRated: undefined
+  BestSellers: undefined
   MostPopular: undefined
   Newest: undefined
   Cheapest: undefined

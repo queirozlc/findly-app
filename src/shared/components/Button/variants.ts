@@ -128,10 +128,30 @@ const authEmail: ButtonVariant = {
   },
 }
 
+const mapButton: ButtonVariant = {
+  enabled: {
+    button: {
+      props: 'bg-soft-dark-500 rounded-full',
+    },
+    title: {
+      props: 'text-white font-inter-semi',
+    },
+  },
+  disabled: {
+    button: {
+      props: 'bg-soft-dark-500/70 rounded-full',
+    },
+    title: {
+      props: 'text-white font-inter-semi',
+    },
+  },
+}
+
 export const variants = {
   solid,
   outline,
   oauthGoogle,
   oauthFacebook,
   authEmail,
+  mapButton,
 }

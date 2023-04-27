@@ -14,7 +14,13 @@ interface ButtonProps {
   isLoading?: boolean
   icon?: React.ReactNode
   disabled?: boolean
-  variant: 'outline' | 'solid' | 'oauthGoogle' | 'oauthFacebook' | 'authEmail'
+  variant:
+    | 'outline'
+    | 'solid'
+    | 'oauthGoogle'
+    | 'oauthFacebook'
+    | 'authEmail'
+    | 'mapButton'
   styles?: TouchableOpacityProps['style']
   textStyles?: TextProps['style']
 }
