@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { Text, View } from 'react-native'
-import { AuthStackParamList } from '../../../../routes/types/auth-route'
+import { AuthStackParamList } from '../../routes/types'
 import ForgotPasswordForm from '../ForgotPasswordForm'
 
 export default function ForgotPasswordCard() {

@@ -1,5 +1,5 @@
+import AuthRoutes from '../modules/authentication/routes'
 import AppRoutes from './app-route'
-import AuthRoutes from './auth-route'
 
 export default function Router() {
   const isAuthenticated = false

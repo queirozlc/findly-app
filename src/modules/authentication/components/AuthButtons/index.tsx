@@ -1,8 +1,8 @@
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { Image, View } from 'react-native'
-import { AuthStackParamList } from '../../../../routes/types/auth-route'
 import Button from '../../../../shared/components/Button'
+import { AuthStackParamList } from '../../routes/types'
 
 interface AuthButtonsProps {
   view: 'sign-in' | 'sign-up'

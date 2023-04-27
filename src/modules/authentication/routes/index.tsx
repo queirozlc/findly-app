@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import EmailSignInScreen from '../modules/authentication/screens/EmailSignInScreen'
-import EmailSignUpScreen from '../modules/authentication/screens/EmailSignUpScreen'
-import ForgotPasswordScreen from '../modules/authentication/screens/ForgotPasswordScreen'
-import SignInScreen from '../modules/authentication/screens/SignInScreen'
-import SignUpScreen from '../modules/authentication/screens/SignUpScreen'
-import { AuthPropsNavigation } from './types/auth-route'
+import EmailSignInScreen from '../screens/EmailSignInScreen'
+import EmailSignUpScreen from '../screens/EmailSignUpScreen'
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
+import SignInScreen from '../screens/SignInScreen'
+import SignUpScreen from '../screens/SignUpScreen'
+import { AuthPropsNavigation } from './types'
 
 const Stack = createNativeStackNavigator<AuthPropsNavigation>()
 

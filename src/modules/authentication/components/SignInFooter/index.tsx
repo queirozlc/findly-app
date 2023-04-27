@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { Text, View } from 'react-native'
-import { AuthStackParamList } from '../../../../routes/types/auth-route'
+import { AuthStackParamList } from '../../routes/types'
 
 interface SignInFooterProps {
   view: 'sign-in' | 'sign-up'

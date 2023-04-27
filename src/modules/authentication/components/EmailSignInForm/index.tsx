@@ -3,9 +3,9 @@ import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { Text, View } from 'react-native'
 import colors from 'tailwindcss/colors'
-import { AuthStackParamList } from '../../../../routes/types/auth-route'
 import Button from '../../../../shared/components/Button'
 import Input from '../../../../shared/components/Input'
+import { AuthStackParamList } from '../../routes/types'
 
 export default function EmailSignInForm() {
   const navigation = useNavigation<AuthStackParamList>()
