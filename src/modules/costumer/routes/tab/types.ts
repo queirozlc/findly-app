@@ -1,7 +1,7 @@
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 
 export type CostumerBottomTabStackParamList = {
-  HomeStack: undefined
+  HomeCategoriesMaterialTopBar: undefined
   ProfileStack: undefined
 }
 
