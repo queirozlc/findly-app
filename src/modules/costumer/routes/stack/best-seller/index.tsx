@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from '../../../screens/material-top-bar/best-seller/HomeScreen'
-import MapScreen from '../../../screens/stack/modal/MapScreen'
+import MapScreen from '../../../screens/modal/MapScreen'
 import { CostumerBestSellersStackParamList } from './types'
 
 const Stack = createNativeStackNavigator<CostumerBestSellersStackParamList>()

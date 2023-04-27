@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ServiceProviderDetailsStack from '../../modules/costumer/routes/stack/service-provider-details'
 import CostumerTabNavigator from '../../modules/costumer/routes/tab'
 import { AppStackParamList } from './app-route-type'
 
@@ -21,6 +22,10 @@ export default function AppRoutes() {
       <Stack.Screen
         name="CostumerTabNavigator"
         component={CostumerTabNavigator}
+      />
+      <Stack.Screen
+        name="CostumerServiceProviderDetailsStack"
+        component={ServiceProviderDetailsStack}
       />
     </Stack.Navigator>
   )
