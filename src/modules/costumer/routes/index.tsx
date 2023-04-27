@@ -1,8 +1,7 @@
 import { Feather } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import colors from 'tailwindcss/colors'
-import HomeScreen from '../screens/HomeScreen'
-import ProfileScreen from '../screens/ProfileScreen'
+import CostumerHomeStack from './home'
 import { CostumerBottomTabStackParamList } from './types'
 
 const Tab = createBottomTabNavigator<CostumerBottomTabStackParamList>()
@@ -45,19 +44,19 @@ export default function CostumerTabNavigator() {
             return <Feather name="home" size={size} color={color} />
           },
         }}
-        name="Home"
-        component={HomeScreen}
+        name="HomeStack"
+        component={CostumerHomeStack}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon({ color, size }) {
             return <Feather name="user" size={size} color={color} />
           },
         }}
-        name="Profile"
+        name="ProfileStack"
         component={ProfileScreen}
-      />
+      /> */}
     </Tab.Navigator>
   )
 }
