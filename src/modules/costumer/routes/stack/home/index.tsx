@@ -1,13 +1,21 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import CostumerMaterialTabCategories from '../categories'
+import CostumerNavigationHeader from '../../../components/CostumerNavigationHeader'
+import CostumerMaterialTabCategories from '../../top-bar/categories'
 import { CostumerHomeStackParamList } from './home-types'
 
 const Stack = createNativeStackNavigator<CostumerHomeStackParamList>()
 
 export default function CostumerHomeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        statusBarStyle: 'dark',
+      }}
+    >
       <Stack.Screen
+        options={{
+          header: () => <CostumerNavigationHeader />,
+        }}
         name="Categories"
         component={CostumerMaterialTabCategories}
       />

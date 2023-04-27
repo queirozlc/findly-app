@@ -1,0 +1,39 @@
+import { Feather } from '@expo/vector-icons'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+
+const filterIcon = require('../../../../../assets/filter_icon.png')
+
+export default function CostumerNavigationHeader() {
+  return (
+    <View className="bg-white items-center py-10 px-7 ">
+      <TouchableOpacity
+        className="flex-row items-center h-16 px-6 rounded-full justify-between w-full bg-white"
+        activeOpacity={0.9}
+        style={{
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 10,
+        }}
+      >
+        <View>
+          <Feather name="search" size={24} color="black" />
+        </View>
+        <View>
+          <Text className="text-sm font-poppins-medium">What do you need?</Text>
+        </View>
+        <TouchableOpacity
+          className="p-2 border-2 border-lightest-gray-500 rounded-full active:bg-lightest-gray-500"
+          activeOpacity={0.9}
+        >
+          <Image
+            source={filterIcon}
+            style={{ resizeMode: 'contain' }}
+            className="w-6 h-6"
+          />
+        </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
+  )
+}

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import CostumerTabNavigator from '../../modules/costumer/routes'
+import CostumerTabNavigator from '../../modules/costumer/routes/tab'
 import { AppStackParamList } from './app-route-type'
 
 enum RoleName {

@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import colors from 'tailwindcss/colors'
-import CostumerHomeStack from './home'
+import CostumerHomeStack from '../stack/home'
 import { CostumerBottomTabStackParamList } from './types'
 
 const Tab = createBottomTabNavigator<CostumerBottomTabStackParamList>()

@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import colors from 'tailwindcss/colors'
-import HomeScreen from '../../screens/HomeScreen'
+import HomeScreen from '../../../screens/material-top-bar/HomeScreen'
 import { CostumerCategoriesMaterialTopTabParamList } from './types'
 
 const TopTab =
