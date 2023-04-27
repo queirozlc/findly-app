@@ -5,7 +5,7 @@ const filterIcon = require('../../../../../assets/filter_icon.png')
 
 export default function CostumerNavigationHeader() {
   return (
-    <View className="bg-white items-center py-10 px-7 ">
+    <View className="bg-white items-center py-5 px-7 ">
       <TouchableOpacity
         className="flex-row items-center h-16 px-6 rounded-full justify-between w-full bg-white"
         activeOpacity={0.9}

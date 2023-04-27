@@ -1,6 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import colors from 'tailwindcss/colors'
 import HomeScreen from '../../../screens/material-top-bar/HomeScreen'
+import MostPopularScreen from '../../../screens/material-top-bar/MostPopularScreen'
 import { CostumerCategoriesMaterialTopTabParamList } from './types'
 
 const TopTab =
@@ -23,6 +24,13 @@ export default function CostumerMaterialTabCategories() {
       }}
     >
       <TopTab.Screen name="Home" component={HomeScreen} />
+      <TopTab.Screen
+        options={{
+          tabBarLabel: 'Most Popular',
+        }}
+        name="MostPopular"
+        component={MostPopularScreen}
+      />
     </TopTab.Navigator>
   )
 }

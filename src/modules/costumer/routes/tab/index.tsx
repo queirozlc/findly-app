@@ -12,7 +12,7 @@ export default function CostumerTabNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 70,
+          height: 60,
           zIndex: 10,
           shadowColor: '#000',
           shadowOffset: {
@@ -23,10 +23,10 @@ export default function CostumerTabNavigator() {
           shadowRadius: 10,
           justifyContent: 'center',
           alignContent: 'center',
-          paddingBottom: 10,
+          paddingBottom: 5,
         },
         tabBarIconStyle: {
-          marginTop: 10,
+          marginTop: 5,
         },
         tabBarInactiveTintColor: colors.gray['400'],
         tabBarActiveTintColor: colors.yellow['500'],
