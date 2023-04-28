@@ -44,10 +44,6 @@ export default function HomeScreen() {
       setIndex(0)
       bottomSheetRef.current?.snapToIndex(0)
     }
-
-    if (mapStateValue === true && index === 1) {
-      setMapState(false)
-    }
   }, [index, mapStateValue])
 
   return (
