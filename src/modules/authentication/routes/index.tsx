@@ -14,6 +14,7 @@ export default function AuthRoutes() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        statusBarTranslucent: true,
         animation: 'slide_from_right',
       }}
     >

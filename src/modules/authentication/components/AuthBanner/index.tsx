@@ -4,13 +4,13 @@ export default function AuthBanner() {
   return (
     <View>
       <ImageBackground
-        source={require('../../../../../assets/auth_thumbnail.png')}
+        source={require('../../../../../assets/ellipse_yellow.png')}
         className="w-full h-80 items-center justify-center"
       >
         <Image
-          source={require('../../../../../assets/logo_dark2.png')}
+          source={require('../../../../../assets/logo_bg.png')}
           style={{ resizeMode: 'cover' }}
-          className="w-64 h-64"
+          className="w-96 h-96"
         />
       </ImageBackground>
     </View>

@@ -1,4 +1,3 @@
-import { Feather } from '@expo/vector-icons'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const filterIcon = require('../../../../../assets/filter_icon.png')
@@ -18,7 +17,11 @@ export default function CostumerNavigationHeader() {
         }}
       >
         <View>
-          <Feather name="search" size={24} color="black" />
+          <Image
+            source={require('../../../../../assets/search_icon.png')}
+            resizeMode="contain"
+            className="w-6 h-6"
+          />
         </View>
         <View>
           <Text className="text-sm font-poppins-medium">What do you need?</Text>

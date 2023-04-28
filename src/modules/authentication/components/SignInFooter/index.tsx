@@ -18,7 +18,7 @@ export default function SignInFooter({ view }: SignInFooterProps) {
   }
 
   return (
-    <View className="items-center justify-center space-y-8 px-6">
+    <View className="items-center justify-center space-y-4 px-6">
       <View>
         <Text className="font-inter-medium text-dark-gray-500 text-base">
           {view === 'sign-in'
