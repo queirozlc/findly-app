@@ -1,7 +1,7 @@
 import { AntDesign, Feather } from '@expo/vector-icons'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import colors from 'tailwindcss/colors'
-import MostPopularScreen from '../../../screens/material-top-bar/MostPopularScreen'
+import MostPopularScreen from '../../../screens/MostPopularScreen'
 import CostumerBestSellerStack from '../../stack/best-seller'
 import { CostumerCategoriesMaterialTopTabParamList } from './types'
 

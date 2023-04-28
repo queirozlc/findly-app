@@ -1,7 +1,7 @@
 import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet'
-import { useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Dimensions, View } from 'react-native'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import { mapState } from '../../../../shared/utils/state/atoms/map-state'
 import { BestSellerHeader } from '../../components/BestSellerHeader'
@@ -22,29 +22,46 @@ export default function HomeScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null)
   const deviceHeight = Dimensions.get('window').height
   const snapPoints = useMemo(() => [deviceHeight * 0.1, deviceHeight], [])
-  const mapStateValue = useRecoilValue(mapState)
+  const [mapStateValue, setMapState] = useRecoilState(mapState)
+  const [index, setIndex] = useState(1)
 
   function renderItem({ item }: HomeScreenProps) {
     return <HomeServiceProviderCards data={item} />
   }
 
+  const handleSheetChange = useCallback((index: number) => {
+    if (index === 0) {
+      setMapState(true)
+      setIndex(index)
+    } else {
+      setMapState(false)
+      setIndex(index)
+    }
+  }, [])
+
   useEffect(() => {
     if (mapStateValue === true) {
+      setIndex(0)
       bottomSheetRef.current?.snapToIndex(0)
     }
-  }, [mapStateValue])
+
+    if (mapStateValue === true && index === 1) {
+      setMapState(false)
+    }
+  }, [index, mapStateValue])
 
   return (
     <View className="flex-1">
       <Layout />
       <BottomSheet
         ref={bottomSheetRef}
-        index={1}
+        index={index}
         snapPoints={snapPoints}
         handleIndicatorStyle={{
           backgroundColor: colors.zinc[400],
         }}
         topInset={-20}
+        onChange={handleSheetChange}
       >
         <BottomSheetFlatList
           showsVerticalScrollIndicator={false}

@@ -1,6 +1,6 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
-import HomeScreen from '../material-top-bar/best-seller/HomeScreen'
+import HomeScreen from '../HomeScreen'
 
 interface MapScreenProps {
   item: ServiceProviderData

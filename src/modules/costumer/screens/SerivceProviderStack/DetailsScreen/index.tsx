@@ -9,7 +9,7 @@ import Services from '../../../components/Services'
 import { ServiceProviderDetailsStackParamList } from '../../../routes/stack/service-provider-details/type'
 import { ServiceData } from '../../../utils/view-model/abstract-service-presenter'
 import { fakeServiceData } from '../../../utils/view-model/fake-service'
-import { Footer } from '../../material-top-bar/best-seller/HomeScreen'
+import { Footer } from '../../HomeScreen'
 
 type Props = NativeStackScreenProps<
   ServiceProviderDetailsStackParamList,
