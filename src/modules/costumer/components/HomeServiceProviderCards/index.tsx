@@ -17,7 +17,7 @@ export default function HomeServiceProviderCards({
   return (
     <>
       <TouchableOpacity
-        className="bg-white rounded-t-3xl rounded-b-lg flex-1 mt-10 pb-3"
+        className="bg-white dark:bg-dark-gray-500 rounded-t-3xl rounded-b-lg flex-1 mt-10 pb-3"
         activeOpacity={0.9}
         style={{
           shadowColor: '#000',
