@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<
   'Details'
 >
 
-export default function ServiceProviderDetailsStack({ route }: Props) {
+export default function ServiceProviderDetailsStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -21,11 +21,7 @@ export default function ServiceProviderDetailsStack({ route }: Props) {
         statusBarTranslucent: true,
       }}
     >
-      <Stack.Screen
-        name="Details"
-        component={ServiceProviderDetailsScreen}
-        initialParams={{ data: route.params.data }}
-      />
+      <Stack.Screen name="Details" component={ServiceProviderDetailsScreen} />
       <Stack.Screen name="ServiceDetails" component={ServiceDetailsScreen} />
     </Stack.Navigator>
   )

@@ -131,7 +131,7 @@ const authEmail: ButtonVariant = {
 const mapButton: ButtonVariant = {
   enabled: {
     button: {
-      props: 'bg-soft-dark-500 rounded-full',
+      props: 'bg-soft-dark-800 rounded-full',
     },
     title: {
       props: 'text-white font-inter-semi',

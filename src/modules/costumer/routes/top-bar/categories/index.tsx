@@ -15,13 +15,15 @@ export default function CostumerMaterialTabCategories() {
         tabBarActiveTintColor: colors.yellow[500],
         tabBarInactiveTintColor: colors.zinc[400],
         tabBarLabelStyle: {
-          fontSize: 14,
+          fontSize: 12,
           fontFamily: 'Poppins_600SemiBold',
         },
         tabBarIndicatorStyle: {
           backgroundColor: colors.yellow[500],
           height: 3,
         },
+        tabBarPressColor: 'transparent',
+        tabBarScrollEnabled: true,
       }}
     >
       <TopTab.Screen
@@ -42,6 +44,26 @@ export default function CostumerMaterialTabCategories() {
           },
         }}
         name="MostPopular"
+        component={MostPopularScreen}
+      />
+      <TopTab.Screen
+        options={{
+          tabBarLabel: 'Cheapest',
+          tabBarIcon({ color }) {
+            return <AntDesign name="rocket1" size={24} color={color} />
+          },
+        }}
+        name="Cheapest"
+        component={MostPopularScreen}
+      />
+      <TopTab.Screen
+        options={{
+          tabBarLabel: 'Newest',
+          tabBarIcon({ color }) {
+            return <AntDesign name="rocket1" size={24} color={color} />
+          },
+        }}
+        name="Newest"
         component={MostPopularScreen}
       />
     </TopTab.Navigator>

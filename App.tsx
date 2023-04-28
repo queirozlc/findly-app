@@ -17,6 +17,8 @@ import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect, useState } from 'react'
 import { View } from 'react-native'
+import 'react-native-gesture-handler'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { RecoilRoot } from 'recoil'
 import Router from './src/shared/routes'
 
@@ -60,12 +62,14 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <RecoilRoot>
-        <View onLayout={onLayout} className="flex-1">
-          <Router />
-        </View>
-      </RecoilRoot>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <RecoilRoot>
+          <View onLayout={onLayout} className="flex-1">
+            <Router />
+          </View>
+        </RecoilRoot>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   )
 }

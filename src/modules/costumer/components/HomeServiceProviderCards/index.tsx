@@ -30,7 +30,10 @@ export default function HomeServiceProviderCards({
           elevation: 2,
         }}
         onPress={() =>
-          navigation.navigate('CostumerServiceProviderDetailsStack', { data })
+          navigation.navigate('CostumerServiceProviderDetailsStack', {
+            screen: 'Details',
+            params: { data },
+          })
         }
       >
         <HomeCardThumbnail data={data} />
