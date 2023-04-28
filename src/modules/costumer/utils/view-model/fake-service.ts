@@ -1,6 +1,6 @@
-import { ServicesData } from './abstract-service-presenter'
+import { ServiceData } from './abstract-service-presenter'
 
-export const fakeServiceData: ServicesData[] = [
+export const fakeServiceData: ServiceData[] = [
   {
     // generate random uuid
     id: 'e49d4ea7-b1b1-4d54-944c-a454b348ca6e',

@@ -3,6 +3,7 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack'
 import ServiceProviderDetailsScreen from '../../../screens/SerivceProviderStack/DetailsScreen'
+import ServiceDetailsScreen from '../../../screens/ServiceDetailsScreen'
 import { ServiceProviderDetailsStackParamList } from './type'
 
 const Stack = createNativeStackNavigator<ServiceProviderDetailsStackParamList>()
@@ -25,6 +26,7 @@ export default function ServiceProviderDetailsStack({ route }: Props) {
         component={ServiceProviderDetailsScreen}
         initialParams={{ data: route.params.data }}
       />
+      <Stack.Screen name="ServiceDetails" component={ServiceDetailsScreen} />
     </Stack.Navigator>
   )
 }

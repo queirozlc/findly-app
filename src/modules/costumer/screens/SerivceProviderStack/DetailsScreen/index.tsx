@@ -7,7 +7,7 @@ import ServiceProviderDetailsBanner from '../../../components/ServiceProviderDet
 import ServiceProviderInfos from '../../../components/ServiceProviderInfos'
 import Services from '../../../components/Services'
 import { ServiceProviderDetailsStackParamList } from '../../../routes/stack/service-provider-details/type'
-import { ServicesData } from '../../../utils/view-model/abstract-service-presenter'
+import { ServiceData } from '../../../utils/view-model/abstract-service-presenter'
 import { fakeServiceData } from '../../../utils/view-model/fake-service'
 import { Footer } from '../../material-top-bar/best-seller/HomeScreen'
 
@@ -22,7 +22,7 @@ export default function ServiceProviderDetailsScreen({ route }: Props) {
     serviceProviderDetailState,
   )
 
-  function handleRenderServiceItems({ item }: { item: ServicesData }) {
+  function handleRenderServiceItems({ item }: { item: ServiceData }) {
     return <Services data={item} />
   }
 
@@ -40,8 +40,6 @@ export default function ServiceProviderDetailsScreen({ route }: Props) {
   return (
     <View className="flex-1 bg-white">
       <ServiceProviderDetailsBanner />
-
-      {/* Service Provider Infos */}
 
       {/* Service Provider Services */}
       <View className="flex-1">

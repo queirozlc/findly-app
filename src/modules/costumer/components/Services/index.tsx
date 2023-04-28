@@ -1,13 +1,22 @@
-import { Image, Text, View } from 'react-native'
-import { ServicesData } from '../../utils/view-model/abstract-service-presenter'
+import { useNavigation } from '@react-navigation/native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { ServiceProviderDetailsNavigationProps } from '../../routes/stack/service-provider-details/type'
+import { ServiceData } from '../../utils/view-model/abstract-service-presenter'
 
 interface Props {
-  data: ServicesData
+  data: ServiceData
 }
 
 export default function Services({ data }: Props) {
+  const navigation = useNavigation<ServiceProviderDetailsNavigationProps>()
+
   return (
-    <View>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={() => {
+        navigation.navigate('ServiceDetails', { data })
+      }}
+    >
       <View className="py-5 px-4">
         <View className="flex-row items-center justify-between">
           <View className="flex-1 pr-2 space-y-3">
@@ -38,6 +47,6 @@ export default function Services({ data }: Props) {
         </View>
       </View>
       <View className="w-full h-0.5 bg-zinc-100 mt-2" />
-    </View>
+    </TouchableOpacity>
   )
 }

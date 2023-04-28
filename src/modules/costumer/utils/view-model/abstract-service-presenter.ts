@@ -1,4 +1,4 @@
-export type ServicesData = {
+export type ServiceData = {
   id: string
   title: string
   description: string
