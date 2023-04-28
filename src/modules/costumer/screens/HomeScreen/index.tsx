@@ -3,12 +3,12 @@ import { useEffect, useMemo, useRef } from 'react'
 import { Dimensions, View } from 'react-native'
 import { useRecoilValue } from 'recoil'
 import colors from 'tailwindcss/colors'
-import { mapState } from '../../../../../../shared/utils/state/atoms/map-state'
-import { BestSellerHeader } from '../../../../components/BestSellerHeader'
-import HomeServiceProviderCards from '../../../../components/HomeServiceProviderCards'
-import Layout from '../../../../components/Layout'
-import { ServiceProviderData } from '../../../../utils/view-model/abstract-service-provider-presenter'
-import { fakeServiceProvider } from '../../../../utils/view-model/fake-service-provider'
+import { mapState } from '../../../../shared/utils/state/atoms/map-state'
+import { BestSellerHeader } from '../../components/BestSellerHeader'
+import HomeServiceProviderCards from '../../components/HomeServiceProviderCards'
+import Layout from '../../components/Layout'
+import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
+import { fakeServiceProvider } from '../../utils/view-model/fake-service-provider'
 
 interface HomeScreenProps {
   item: ServiceProviderData

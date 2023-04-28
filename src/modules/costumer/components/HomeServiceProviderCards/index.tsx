@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native'
 import { AppNavigationProps } from '../../../../shared/routes/app-route-type'
 import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
-import HomeCardInfos from '../HomeCardInfos'
-import HomeCardThumbnail from '../HomeCardThumbnail'
+import HomeCardInfos from './HomeCardInfos'
+import HomeCardThumbnail from './HomeCardThumbnail'
 
 interface HomeServiceProviderCardsProps {
   data: ServiceProviderData
