@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { BestSellerHeader } from '../../../../components/BestSellerHeader'
 import HomeServiceProviderCards from '../../../../components/HomeServiceProviderCards'
 import Layout from '../../../../components/Layout'
@@ -9,12 +9,8 @@ interface HomeScreenProps {
   item: ServiceProviderData
 }
 
-function Footer() {
-  return (
-    <View className="mt-12 items-center justify-center">
-      <Text className="text-zinc-600 text-4xl">•</Text>
-    </View>
-  )
+export function Footer() {
+  return <View className="mt-12 items-center justify-center" />
 }
 
 export default function HomeScreen() {
