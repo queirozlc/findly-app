@@ -47,7 +47,7 @@ export default function HomeScreen() {
   }, [index, mapStateValue])
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 absolute top-0 right-0 left-0 bottom-0">
       <Layout />
       <BottomSheet
         ref={bottomSheetRef}
