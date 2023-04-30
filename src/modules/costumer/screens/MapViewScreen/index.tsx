@@ -1,12 +1,14 @@
 import { KeyboardAvoidingView, View } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import { useRecoilValue } from 'recoil'
+import { costumerPositionState } from '../../../../shared/utils/state/atoms/costumer-position-state'
 import BottomSheetMapView from '../../components/BottomSheetMapView'
 import { useMap } from '../../utils/hooks/useMap'
 import { mapStyle } from '../MapScreen/styles'
 
 export default function MapViewScreen() {
-  const { mapRef, position } = useMap()
-  const { latitude, longitude } = position!
+  const { mapRef } = useMap()
+  const position = useRecoilValue(costumerPositionState)
 
   return (
     <View className="flex-1 bg-white">

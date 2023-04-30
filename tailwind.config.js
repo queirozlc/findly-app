@@ -14,6 +14,7 @@ module.exports = {
         'inter-medium': ['Inter_500Medium'],
         'inter-semi': ['Inter_600SemiBold'],
         'inter-bold': ['Inter_700Bold'],
+        'inter-black': ['Inter_800ExtraBold'],
       },
       colors: {
         primary: {

@@ -4,6 +4,7 @@ import {
   Inter_500Medium,
   Inter_600SemiBold,
   Inter_700Bold,
+  Inter_800ExtraBold,
 } from '@expo-google-fonts/inter'
 import {
   Poppins_300Light,
@@ -42,6 +43,7 @@ export default function App() {
           Inter_500Medium,
           Inter_600SemiBold,
           Inter_700Bold,
+          Inter_800ExtraBold,
         })
       } catch (error) {
         console.log(error)

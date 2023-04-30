@@ -4,6 +4,7 @@ import { ServiceProviderData } from '../../modules/costumer/utils/view-model/abs
 
 export type AppStackParamList = {
   CostumerTabNavigator: undefined
+  ServiceProviderTabNavigator: undefined
   RoleProfilePicker: undefined
   CostumerServiceProviderDetailsStack: {
     screen: keyof ServiceProviderDetailsStackParamList
