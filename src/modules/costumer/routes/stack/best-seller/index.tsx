@@ -13,7 +13,7 @@ export default function CostumerBestSellerStack() {
       }}
     >
       <Stack.Group>
-        <Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="MapHome" component={MapScreen} />
       </Stack.Group>
     </Stack.Navigator>
   )

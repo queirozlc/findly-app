@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import { serviceProviderFavoriteState } from '../../../../shared/utils/state/atoms/service-provider-wish-state'
 import { ServiceProviderDetailsNavigationProps } from '../../routes/stack/service-provider-details/type'
@@ -12,8 +12,7 @@ interface Props {
 }
 
 export default function ServiceProviderDetailsBannerIcons({ data }: Props) {
-  const wishedList = useRecoilValue(serviceProviderFavoriteState)
-  const setWish = useSetRecoilState(serviceProviderFavoriteState)
+  const [wishedList, setWish] = useRecoilState(serviceProviderFavoriteState)
   const navigation = useNavigation<ServiceProviderDetailsNavigationProps>()
   const wished = wishedList.find((item) => item.id === data.id)
 

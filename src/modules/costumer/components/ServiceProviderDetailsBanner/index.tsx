@@ -10,12 +10,12 @@ export default function ServiceProviderDetailsBanner() {
   return (
     <View>
       <ImageBackground
-        source={data.thumbnail}
+        source={{ uri: data?.thumbnail }}
         className="w-full h-56"
         resizeMode="cover"
       >
         <SafeAreaView className="px-5 mt-2">
-          <ServiceProviderDetailsBannerIcons data={data} />
+          <ServiceProviderDetailsBannerIcons data={data!} />
         </SafeAreaView>
       </ImageBackground>
     </View>

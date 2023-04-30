@@ -9,6 +9,7 @@ export type AppStackParamList = {
     screen: keyof ServiceProviderDetailsStackParamList
     params: { data: ServiceProviderData }
   }
+  MapViewStack: undefined
 }
 
 export type AppNavigationProps = NativeStackNavigationProp<AppStackParamList>

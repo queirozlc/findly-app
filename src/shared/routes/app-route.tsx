@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import MapViewStack from '../../modules/costumer/routes/stack/map-view'
 import ServiceProviderDetailsStack from '../../modules/costumer/routes/stack/service-provider-details'
 import CostumerTabNavigator from '../../modules/costumer/routes/tab'
 import { AppStackParamList } from './app-route-type'
@@ -26,6 +27,14 @@ export default function AppRoutes() {
       <Stack.Screen
         name="CostumerServiceProviderDetailsStack"
         component={ServiceProviderDetailsStack}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+          animation: 'slide_from_bottom',
+        }}
+        name="MapViewStack"
+        component={MapViewStack}
       />
     </Stack.Navigator>
   )

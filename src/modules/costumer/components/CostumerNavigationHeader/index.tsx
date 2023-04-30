@@ -1,8 +1,12 @@
+import { useNavigation } from '@react-navigation/native'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { AppNavigationProps } from '../../../../shared/routes/app-route-type'
 
 const filterIcon = require('../../../../../assets/filter_icon.png')
 
 export default function CostumerNavigationHeader() {
+  const navigation = useNavigation<AppNavigationProps>()
+
   return (
     <View className="bg-white items-center py-5 px-7 ">
       <TouchableOpacity
@@ -15,6 +19,7 @@ export default function CostumerNavigationHeader() {
           shadowRadius: 3.84,
           elevation: 10,
         }}
+        onPress={() => navigation.navigate('MapViewStack')}
       >
         <View>
           <Image
@@ -33,7 +38,7 @@ export default function CostumerNavigationHeader() {
           <Image
             source={filterIcon}
             style={{ resizeMode: 'contain' }}
-            className="w-6 h-6"
+            className="w-5 h-5"
           />
         </TouchableOpacity>
       </TouchableOpacity>

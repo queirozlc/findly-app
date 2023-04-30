@@ -1,18 +1,9 @@
 import { atom } from 'recoil'
 import { ServiceProviderData } from '../../../../modules/costumer/utils/view-model/abstract-service-provider-presenter'
 
-const initialState = {
-  id: '',
-  name: '',
-  phoneNumber: '',
-  description: '',
-  averageRating: 0,
-  thumbnail: '',
-}
-
-const serviceProviderDetailState = atom<ServiceProviderData>({
+const serviceProviderDetailState = atom<ServiceProviderData | null>({
   key: 'serviceProviderDetail',
-  default: initialState,
+  default: {} as ServiceProviderData,
 })
 
 export { serviceProviderDetailState }
