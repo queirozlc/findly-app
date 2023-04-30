@@ -3,13 +3,13 @@ import { useEffect } from 'react'
 import { FlatList, View } from 'react-native'
 import { useSetRecoilState } from 'recoil'
 import { serviceProviderDetailState } from '../../../../../shared/utils/state/atoms/service-provider-detail'
+import { Footer } from '../../../components/HomeServiceProviderCards/Footer'
 import ServiceProviderDetailsBanner from '../../../components/ServiceProviderDetailsBanner'
 import ServiceProviderInfos from '../../../components/ServiceProviderInfos'
 import Services from '../../../components/Services'
 import { ServiceProviderDetailsStackParamList } from '../../../routes/stack/service-provider-details/type'
 import { ServiceData } from '../../../utils/view-model/abstract-service-presenter'
 import { fakeServiceData } from '../../../utils/view-model/fake-service'
-import { Footer } from '../../HomeScreen'
 
 type Props = NativeStackScreenProps<
   ServiceProviderDetailsStackParamList,
