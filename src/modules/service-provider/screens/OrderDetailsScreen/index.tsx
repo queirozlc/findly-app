@@ -1,8 +1,9 @@
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
+import BottomSheet from '@gorhom/bottom-sheet'
 import { useCallback, useRef } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { useRecoilState } from 'recoil'
 import Layout from '../../components/Layout'
+import OrderNotificationContent from '../../components/OrderNotificationBottomSheet/OrderNotificationContent'
 import { notificationBottomSheetIndexState } from '../../store/atoms/notifications-bottom-sheet-index'
 
 export default function OrderDetailsScreen() {
@@ -19,15 +20,11 @@ export default function OrderDetailsScreen() {
       <BottomSheet
         ref={bottomSheetRef}
         index={index}
-        snapPoints={['1%', '50%', '100%']}
+        snapPoints={['1%', '60%']}
         onChange={handleSheetChanges}
         enablePanDownToClose={true}
       >
-        <BottomSheetView>
-          <View className="h-full bg-white">
-            <Text>Awesome 🎉</Text>
-          </View>
-        </BottomSheetView>
+        <OrderNotificationContent />
       </BottomSheet>
     </View>
   )

@@ -21,6 +21,7 @@ interface ButtonProps {
     | 'oauthFacebook'
     | 'authEmail'
     | 'mapButton'
+    | 'orderNotification'
   styles?: TouchableOpacityProps['style']
   textStyles?: TextProps['style']
 }

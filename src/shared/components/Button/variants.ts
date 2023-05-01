@@ -146,6 +146,24 @@ const mapButton: ButtonVariant = {
     },
   },
 }
+const orderNotification: ButtonVariant = {
+  enabled: {
+    button: {
+      props: 'bg-soft-dark-800 rounded-xl',
+    },
+    title: {
+      props: 'text-white font-inter-semi',
+    },
+  },
+  disabled: {
+    button: {
+      props: 'bg-soft-dark-500/70 rounded-xl',
+    },
+    title: {
+      props: 'text-white font-inter-semi',
+    },
+  },
+}
 
 export const variants = {
   solid,
@@ -154,4 +172,5 @@ export const variants = {
   oauthFacebook,
   authEmail,
   mapButton,
+  orderNotification,
 }

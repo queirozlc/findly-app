@@ -1,10 +1,11 @@
 import { View } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import { useMap } from '../../../costumer/utils/hooks/useMap'
+import OrderNotificationBottomSheet from '../../components/OrderNotificationBottomSheet'
+import { useMap } from '../../hooks/useMap'
 import { mapStyle } from './styles'
 
 export default function MapScreen() {
-  const { mapRef } = useMap()
+  const { mapRef, position } = useMap()
 
   return (
     <View className="flex-1">
@@ -16,6 +17,8 @@ export default function MapScreen() {
         customMapStyle={mapStyle}
         className="w-full absolute inset-x-0 inset-y-0"
       />
+
+      <OrderNotificationBottomSheet />
     </View>
   )
 }
