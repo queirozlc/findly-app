@@ -3,6 +3,7 @@ import MapViewStack from '../../modules/costumer/routes/stack/map-view'
 import ServiceProviderDetailsStack from '../../modules/costumer/routes/stack/service-provider-details'
 import CostumerTabNavigator from '../../modules/costumer/routes/tab'
 import ServiceProviderTabNavigator from '../../modules/service-provider/routes/service-provider-tab'
+import MapStack from '../../modules/service-provider/routes/stack/map-stack'
 import { AppStackParamList } from './app-route-type'
 
 enum RoleName {
@@ -14,7 +15,7 @@ enum RoleName {
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 export default function AppRoutes() {
-  const roles = [RoleName.COSTUMER] // TODO: implement authentication
+  const roles = [RoleName.SERVICE_PROVIDER] // TODO: implement authentication
 
   return (
     <Stack.Navigator
@@ -41,6 +42,8 @@ export default function AppRoutes() {
             name="ServiceProviderTabNavigator"
             component={ServiceProviderTabNavigator}
           />
+
+          <Stack.Screen name="ServiceProviderMapStack" component={MapStack} />
         </>
       )}
       <Stack.Screen

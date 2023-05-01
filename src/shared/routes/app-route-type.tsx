@@ -11,6 +11,7 @@ export type AppStackParamList = {
     params: { data: ServiceProviderData }
   }
   MapViewStack: undefined
+  ServiceProviderMapStack: undefined
 }
 
 export type AppNavigationProps = NativeStackNavigationProp<AppStackParamList>
