@@ -27,7 +27,7 @@ export default function ServiceInfo() {
         <View className="flex-row items-center space-x-2">
           <Feather name="phone" size={20} color={colors.zinc[500]} />
           <Text className="text-zinc-500 text-sm font-poppins-medium">
-            {serviceProvider.phoneNumber}
+            {serviceProvider?.phoneNumber}
           </Text>
         </View>
       </View>

@@ -5,6 +5,7 @@ import { ServiceProviderData } from '../../../utils/view-model/abstract-service-
 export type ServiceProviderDetailsStackParamList = {
   Details: { data: ServiceProviderData }
   ServiceDetails: { data: ServiceData }
+  OrderDetails: { data: ServiceData }
 }
 
 export type ServiceProviderDetailsNavigationProps =

@@ -1,12 +1,15 @@
 import { Feather } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { useRecoilValue } from 'recoil'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
 import { serviceDetailsState } from '../../../../shared/utils/state/atoms/service-state'
+import { ServiceProviderDetailsNavigationProps } from '../../routes/stack/service-provider-details/type'
 
 export default function ServiceNote() {
   const data = useRecoilValue(serviceDetailsState)
+  const navigation = useNavigation<ServiceProviderDetailsNavigationProps>()
 
   return (
     <View className="mt-4 px-2 space-y-6">
@@ -37,6 +40,7 @@ export default function ServiceNote() {
           textStyles={{
             textTransform: 'uppercase',
           }}
+          onPress={() => navigation.navigate('OrderDetails', { data })}
         />
       </View>
     </View>
