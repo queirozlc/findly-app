@@ -6,6 +6,7 @@ export type ServiceProviderDetailsStackParamList = {
   Details: { data: ServiceProviderData }
   ServiceDetails: { data: ServiceData }
   OrderDetails: { data: ServiceData }
+  AddressConfirmation: undefined
 }
 
 export type ServiceProviderDetailsNavigationProps =
