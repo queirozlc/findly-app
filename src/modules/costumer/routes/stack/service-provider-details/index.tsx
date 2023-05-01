@@ -5,8 +5,8 @@ import {
 import OrderDetailsScreenHeader from '../../../components/OrderDetailsScreenHeader'
 import AddressConfirmationScreen from '../../../screens/AddressConfirmationScreen'
 import OrderDetailsScreen from '../../../screens/OrderDetailsScreen'
-import ServiceProviderDetailsScreen from '../../../screens/SerivceProviderStack/DetailsScreen'
 import ServiceDetailsScreen from '../../../screens/ServiceDetailsScreen'
+import ServiceProviderDetailsScreen from '../../../screens/ServiceProviderStack/DetailsScreen'
 import { ServiceProviderDetailsStackParamList } from './type'
 
 const Stack = createNativeStackNavigator<ServiceProviderDetailsStackParamList>()
