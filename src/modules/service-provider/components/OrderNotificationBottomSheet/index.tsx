@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function OrderNotificationBottomSheet({
-  initialSnapIndex = 1,
+  initialSnapIndex = 0,
 }: Props) {
   const bottomSheetRef = useRef<BottomSheet>(null)
   const snapPoints = useMemo(() => ['10%', '25%', '50%'], [])

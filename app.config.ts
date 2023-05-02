@@ -4,6 +4,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'Findly',
   slug: 'findly-app',
+  scheme: 'findly-app',
   version: '1.0.0',
   splash: {
     image: './assets/logo.png',
@@ -45,6 +46,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'ACCESS_FINE_LOCATION',
       'FOREGROUND_SERVICE',
     ],
+    splash: {
+      backgroundColor: '#ffffff',
+      resizeMode: 'contain',
+      image: './assets/logo_splash.png',
+    },
   },
   web: {
     favicon: './assets/favicon.png',

@@ -2,6 +2,7 @@ import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { Image, View } from 'react-native'
 import Button from '../../../../shared/components/Button'
+import useAuthenticationContext from '../../hooks/useAuthenticationContext'
 import { AuthStackParamList } from '../../routes/types'
 
 interface AuthButtonsProps {
@@ -10,6 +11,14 @@ interface AuthButtonsProps {
 
 export default function AuthButtons({ view }: AuthButtonsProps) {
   const navigation = useNavigation<AuthStackParamList>()
+  const { loginWithGoogle } = useAuthenticationContext()
+
+  async function handleGoogleSignIn() {
+    try {
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <View className="space-y-4">
@@ -23,6 +32,7 @@ export default function AuthButtons({ view }: AuthButtonsProps) {
             />
           }
           variant="oauthGoogle"
+          onPress={handleGoogleSignIn}
         />
       </View>
       <View>
