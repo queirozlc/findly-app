@@ -9,6 +9,8 @@ import Button from '../../../../shared/components/Button'
 import { AuthStackParamList } from '../../routes/types'
 import { SignUpFormProps, SignUpFormSchema } from '../../schemas/sign-up-form'
 import ControlledInput from '../../../../shared/components/ControlledInput'
+import { useSetRecoilState } from 'recoil'
+import { createUserState } from '../../state/create-user-state'
 
 export default function EmailSignUpForm() {
   const navigation = useNavigation<AuthStackParamList>()
@@ -20,13 +22,17 @@ export default function EmailSignUpForm() {
   } = useForm<SignUpFormProps>({
     resolver: zodResolver(SignUpFormSchema),
   })
+  const setCreateUserState = useSetRecoilState(createUserState)
 
-  function handleSignUp(data: SignUpFormProps) {
-    console.log(data)
+  async function handleSignUp(data: SignUpFormProps) {
+    if (!isValid) return
+
+    setCreateUserState(data)
+    navigation.replace('VerifyEmail')
   }
 
   return (
-    <View className="space-y-5">
+    <View className="space-y-4">
       <View className="space-y-2">
         <ControlledInput
           placeholder="Full Name"

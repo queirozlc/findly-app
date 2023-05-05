@@ -65,7 +65,7 @@ export default function Input({
         </TouchableOpacity>
       </View>
 
-      {hasError && error && (
+      {error && (
         <View className="flex-row space-x-2 items-center">
           <Image
             source={require('../../../../assets/error_icon.png')}

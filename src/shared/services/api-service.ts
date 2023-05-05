@@ -1,25 +1,21 @@
 import { API_URL } from '@env'
+import axios, { AxiosResponse } from 'axios'
 
-export interface HttpClient<Response> {
-  post(url: string, data: any): Promise<Response>
-  get(url: string): Promise<Response>
-}
+const app = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
+})
 
-export abstract class ApiService<Request, Response> {
-  private _url: string = API_URL
-
-  protected constructor(
-    private readonly httpClient: HttpClient<Response>,
-    protected readonly uri: string,
-  ) {
-    this.uri = uri
+export abstract class ApiService {
+  protected constructor(protected readonly url: string) {
+    this.url = url
   }
 
-  protected post(requestUrl: string, data: Request): Promise<Response> {
-    return this.httpClient.post(`${this._url}${requestUrl}`, data)
+  protected post(requestUrl: string, body: unknown): Promise<AxiosResponse> {
+    return app.post(`${this.url}${requestUrl}`, body)
   }
 
-  protected get(requestUrl: string): Promise<Response> {
-    return this.httpClient.get(`${this._url}${requestUrl}`)
+  protected get(requestUrl: string): Promise<AxiosResponse> {
+    return app.get(`${this.url}${requestUrl}`)
   }
 }

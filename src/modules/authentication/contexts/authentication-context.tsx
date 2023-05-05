@@ -1,5 +1,6 @@
 import {
   GOOGLE_OAUTH_CLIENT_ID,
+  GOOGLE_OAUTH_REDIRECT_URI,
   GOOGLE_OAUTH_RESPONSE_TYPE,
   GOOGLE_OAUTH_SCOPE,
 } from '@env'
@@ -16,7 +17,6 @@ export interface AuthenticationContextProps {
   login: (data: SignInRequest) => Promise<SignInResponse>
   loginWithGoogle: () => Promise<OAuthResponse | undefined>
   logout: () => void
-  register?: (data: any) => Promise<SignInResponse>
   OauthResponse: OAuthResponse | null
   user: User | null
 }
@@ -38,7 +38,7 @@ export default function AuthenticationContextProvider({
   children: React.ReactNode
 }) {
   const [user, setUser] = useState<User | null>(null)
-  const authService = new AuthenticationService('/auth')
+  const authService = new AuthenticationService()
   const [OauthResponse, setOauthResponse] = useState<OAuthResponse | null>(null)
 
   async function login(data: SignInRequest): Promise<SignInResponse> {
@@ -65,7 +65,7 @@ export default function AuthenticationContextProvider({
 
   async function loginWithGoogle() {
     const CLIENT_ID = GOOGLE_OAUTH_CLIENT_ID
-    const REDIRECT_URI = 'https://auth.expo.io/@ggcaslu/findly-app'
+    const REDIRECT_URI = GOOGLE_OAUTH_REDIRECT_URI
     const RESPONSE_TYPE = GOOGLE_OAUTH_RESPONSE_TYPE
     const SCOPE = encodeURI(GOOGLE_OAUTH_SCOPE)
 
@@ -82,13 +82,17 @@ export default function AuthenticationContextProvider({
     return response
   }
 
+  async function logout() {
+    setUser(null)
+  }
+
   return (
     <AuthenticationContext.Provider
       value={{
         isAuthenticated: !!user,
         isLoading: false,
         login,
-        logout: () => {},
+        logout,
         loginWithGoogle,
         user,
         OauthResponse,

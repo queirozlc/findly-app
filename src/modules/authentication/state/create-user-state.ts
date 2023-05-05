@@ -10,3 +10,5 @@ const createUserState = atom<Input>({
   key: 'createUserState',
   default: {} as Input,
 })
+
+export { createUserState }
