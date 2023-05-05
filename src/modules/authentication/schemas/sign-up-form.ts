@@ -10,4 +10,18 @@ export const SignUpFormSchema = z.object({
     .max(32, "Password can't be more than 32 characters"),
 })
 
+export const DateOfBirthSchema = z.object({
+  date: z
+    .string()
+    .nonempty('Birth date cannot be empty')
+    .refine(
+      (value) =>
+        value.match(/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/),
+      {
+        message: 'Invalid date format, expected dd/mm/yyyy.',
+      },
+    ),
+})
+
 export type SignUpFormProps = z.infer<typeof SignUpFormSchema>
+export type FormDateOfBirthProps = z.infer<typeof DateOfBirthSchema>

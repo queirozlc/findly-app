@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import colors from 'tailwindcss/colors'
 import { FieldError } from 'react-hook-form'
+import { useState } from 'react'
 
 export type InputProps = {
   placeholder?: string
@@ -21,6 +22,9 @@ export type InputProps = {
   value?: string
   hasError?: boolean
   error?: FieldError
+  onFocus?: () => void
+  onPressIn?: () => void
+  editable?: boolean
 }
 
 export default function Input({
@@ -35,7 +39,12 @@ export default function Input({
   value,
   hasError = false,
   error,
+  onFocus,
+  onPressIn,
+  editable = true,
 }: InputProps) {
+  const [onFocusState, setOnFocus] = useState(false)
+
   return (
     <View className="space-y-2">
       <View
@@ -46,15 +55,21 @@ export default function Input({
         <TextInput
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
+          onPressIn={onPressIn}
           className={`border px-4 py-2 rounded-lg h-14 font-inter-regular text-base ${
             hasError ? 'border-error-500' : 'border-dark-gray-500'
-          }`}
+          } ${onFocusState && !error && 'border-primary-500'}`}
           keyboardType={keyboardType}
           onChangeText={onChange}
           autoCapitalize={capitalize}
           cursorColor={colors.zinc['800']}
           selectionColor={colors.zinc['800']}
           value={value}
+          onFocus={() => {
+            setOnFocus(true)
+            if (onFocus) onFocus()
+          }}
+          editable={editable}
         />
         <TouchableOpacity
           className="absolute right-5 top-10"

@@ -152,7 +152,7 @@ const orderNotification: ButtonVariant = {
       props: 'bg-soft-dark-800 rounded-xl',
     },
     title: {
-      props: 'text-white font-inter-semi',
+      props: 'text-white font-inter-black',
     },
   },
   disabled: {

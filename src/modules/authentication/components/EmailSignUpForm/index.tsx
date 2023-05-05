@@ -11,8 +11,12 @@ import { SignUpFormProps, SignUpFormSchema } from '../../schemas/sign-up-form'
 import ControlledInput from '../../../../shared/components/ControlledInput'
 import { useSetRecoilState } from 'recoil'
 import { createUserState } from '../../state/create-user-state'
+import useAuthenticationContext from '../../hooks/useAuthenticationContext'
+import { AxiosError } from 'axios'
+import { verificationCodeState } from '../../state/verification-code-state'
 
 export default function EmailSignUpForm() {
+  const { createCostumer, isLoading } = useAuthenticationContext()
   const navigation = useNavigation<AuthStackParamList>()
   const [passwordVisible, setPasswordVisible] = useState(false)
   const {
@@ -23,12 +27,19 @@ export default function EmailSignUpForm() {
     resolver: zodResolver(SignUpFormSchema),
   })
   const setCreateUserState = useSetRecoilState(createUserState)
+  const setVerificationCodeState = useSetRecoilState(verificationCodeState)
 
   async function handleSignUp(data: SignUpFormProps) {
     if (!isValid) return
-
-    setCreateUserState(data)
-    navigation.replace('VerifyEmail')
+    try {
+      const { code } = await createCostumer(data)
+      setCreateUserState(data)
+      setVerificationCodeState({ code })
+      navigation.replace('VerifyEmail')
+    } catch (error) {
+      const { response } = error as AxiosError
+      console.log(response?.data)
+    }
   }
 
   return (
@@ -94,6 +105,7 @@ export default function EmailSignUpForm() {
             textStyles={{ textTransform: 'uppercase' }}
             onPress={handleSubmit(handleSignUp)}
             disabled={isDirty && !isValid}
+            isLoading={isLoading}
           />
         </View>
 
