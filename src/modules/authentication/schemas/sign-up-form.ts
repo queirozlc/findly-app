@@ -24,3 +24,5 @@ export const SignUpFormSchema = z.object({
       message: 'Password must be at most 32 characters long',
     }),
 })
+
+export type SignUpFormProps = z.infer<typeof SignUpFormSchema>

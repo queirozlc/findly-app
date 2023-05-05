@@ -34,16 +34,11 @@ export default function SignInFooter({ view }: SignInFooterProps) {
       </View>
 
       <View>
-        <Text className="font-inter-regular text-sm text-center">
-          By continuing, you agree to our{' '}
-          <Text className="font-inter-regular text-sm underline">
-            Terms and Conditions
-          </Text>{' '}
-          and{' '}
-          <Text className="font-inter-regular text-sm underline">
-            Privacy Policy
+        <Text className="font-inter-medium text-sm text-center">
+          Want to use Findly for business?{' '}
+          <Text className="font-poppins-black text-sm text-brand-violet-500 underline">
+            Continue here.
           </Text>
-          .
         </Text>
       </View>
     </View>

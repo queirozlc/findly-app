@@ -4,20 +4,23 @@ import { Image, View } from 'react-native'
 import Button from '../../../../shared/components/Button'
 import useAuthenticationContext from '../../hooks/useAuthenticationContext'
 import { AuthStackParamList } from '../../routes/types'
-
 interface AuthButtonsProps {
   view: 'sign-in' | 'sign-up'
 }
 
 export default function AuthButtons({ view }: AuthButtonsProps) {
   const navigation = useNavigation<AuthStackParamList>()
-  const { loginWithGoogle } = useAuthenticationContext()
+  const { loginWithGoogle, OauthResponse } = useAuthenticationContext()
 
   async function handleGoogleSignIn() {
-    try {
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await loginWithGoogle()
+    // send the response to the backend server to make a call to google and get the user info
+    // if the user exists in the database, then return the user info from the db
+    // if the user does not exist in the database, then create a new user in the database
+    // and return the user info from the db
+    // then set the user in the authentication context
+    // then navigate to the home screen
+    console.log(response)
   }
 
   return (

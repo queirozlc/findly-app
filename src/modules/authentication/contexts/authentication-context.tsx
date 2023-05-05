@@ -1,3 +1,9 @@
+import {
+  GOOGLE_OAUTH_CLIENT_ID,
+  GOOGLE_OAUTH_RESPONSE_TYPE,
+  GOOGLE_OAUTH_SCOPE,
+} from '@env'
+import * as AuthSession from 'expo-auth-session'
 import { createContext, useState } from 'react'
 import { SignInRequest } from '../../../shared/types/sign-in-request'
 import { SignInResponse } from '../../../shared/types/sign-in-response'
@@ -8,15 +14,23 @@ export interface AuthenticationContextProps {
   isAuthenticated: boolean
   isLoading: boolean
   login: (data: SignInRequest) => Promise<SignInResponse>
-  loginWithGoogle: () => Promise<void>
+  loginWithGoogle: () => Promise<OAuthResponse | undefined>
   logout: () => void
   register?: (data: any) => Promise<SignInResponse>
+  OauthResponse: OAuthResponse | null
   user: User | null
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextProps>(
   {} as AuthenticationContextProps,
 )
+
+interface OAuthResponse {
+  type: string
+  params: {
+    access_token: string
+  }
+}
 
 export default function AuthenticationContextProvider({
   children,
@@ -25,6 +39,7 @@ export default function AuthenticationContextProvider({
 }) {
   const [user, setUser] = useState<User | null>(null)
   const authService = new AuthenticationService('/auth')
+  const [OauthResponse, setOauthResponse] = useState<OAuthResponse | null>(null)
 
   async function login(data: SignInRequest): Promise<SignInResponse> {
     const {
@@ -49,8 +64,22 @@ export default function AuthenticationContextProvider({
   }
 
   async function loginWithGoogle() {
-    const { data } = await authService.signInWithGoogle()
-    console.log(data)
+    const CLIENT_ID = GOOGLE_OAUTH_CLIENT_ID
+    const REDIRECT_URI = 'https://auth.expo.io/@ggcaslu/findly-app'
+    const RESPONSE_TYPE = GOOGLE_OAUTH_RESPONSE_TYPE
+    const SCOPE = encodeURI(GOOGLE_OAUTH_SCOPE)
+
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&prompt=consent`
+    const response = (await AuthSession.startAsync({
+      authUrl,
+    })) as OAuthResponse
+
+    if (response.type === 'success') {
+      setOauthResponse(response)
+    } else {
+      return
+    }
+    return response
   }
 
   return (
@@ -62,6 +91,7 @@ export default function AuthenticationContextProvider({
         logout: () => {},
         loginWithGoogle,
         user,
+        OauthResponse,
       }}
     >
       {children}
