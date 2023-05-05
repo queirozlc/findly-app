@@ -1,4 +1,5 @@
 import {
+  Image,
   KeyboardTypeOptions,
   Text,
   TextInput,
@@ -6,8 +7,9 @@ import {
   View,
 } from 'react-native'
 import colors from 'tailwindcss/colors'
+import { FieldError } from 'react-hook-form'
 
-interface InputProps {
+export type InputProps = {
   placeholder?: string
   secureTextEntry?: boolean
   icon?: React.ReactNode
@@ -16,6 +18,9 @@ interface InputProps {
   label: string
   capitalize?: 'none' | 'sentences' | 'words' | 'characters'
   onTouchablePress?: () => void
+  value?: string
+  hasError?: boolean
+  error?: FieldError
 }
 
 export default function Input({
@@ -27,27 +32,51 @@ export default function Input({
   label,
   capitalize,
   onTouchablePress,
+  value,
+  hasError = false,
+  error,
 }: InputProps) {
   return (
-    <View className="space-y-2 justify-center" style={{ position: 'relative' }}>
-      <Text className="text-base font-inter-medium text-left">{label}</Text>
-      <TextInput
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        className="border border-dark-gray-500 px-4 py-2 rounded-lg h-14 font-inter-regular text-base"
-        keyboardType={keyboardType}
-        onChangeText={onChange}
-        autoCapitalize={capitalize}
-        cursorColor={colors.zinc['800']}
-        selectionColor={colors.zinc['800']}
-      />
-      <TouchableOpacity
-        className="absolute right-5 top-10"
-        activeOpacity={1}
-        onPress={onTouchablePress}
+    <View className="space-y-2">
+      <View
+        className="space-y-2 justify-center"
+        style={{ position: 'relative' }}
       >
-        {icon}
-      </TouchableOpacity>
+        <Text className="text-base font-inter-medium text-left">{label}</Text>
+        <TextInput
+          placeholder={placeholder}
+          secureTextEntry={secureTextEntry}
+          className={`border px-4 py-2 rounded-lg h-14 font-inter-regular text-base ${
+            hasError ? 'border-error-500' : 'border-dark-gray-500'
+          }`}
+          keyboardType={keyboardType}
+          onChangeText={onChange}
+          autoCapitalize={capitalize}
+          cursorColor={colors.zinc['800']}
+          selectionColor={colors.zinc['800']}
+          value={value}
+        />
+        <TouchableOpacity
+          className="absolute right-5 top-10"
+          activeOpacity={1}
+          onPress={onTouchablePress}
+        >
+          {icon}
+        </TouchableOpacity>
+      </View>
+
+      {hasError && error && (
+        <View className="flex-row space-x-2 items-center">
+          <Image
+            source={require('../../../../assets/error_icon.png')}
+            resizeMode={'contain'}
+            className="w-5 h-5"
+          />
+          <Text className="text-sm text-red-500 font-poppins-semi text-center">
+            {error.message}
+          </Text>
+        </View>
+      )}
     </View>
   )
 }

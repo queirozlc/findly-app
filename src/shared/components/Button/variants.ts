@@ -29,10 +29,10 @@ const solid: ButtonVariant = {
   },
   disabled: {
     button: {
-      props: 'bg-primary-500/70 rounded-xl',
+      props: 'bg-primary-500/50 rounded-xl',
     },
     title: {
-      props: 'text-zinc-600 font-poppins-semi',
+      props: 'text-zinc-600/50 font-poppins-semi',
     },
     loading: {
       props: '#000',

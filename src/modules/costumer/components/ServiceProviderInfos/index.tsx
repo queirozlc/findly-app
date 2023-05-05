@@ -7,6 +7,8 @@ import { serviceProviderDetailState } from '../../../../shared/utils/state/atoms
 export default function ServiceProviderInfos() {
   const data = useRecoilValue(serviceProviderDetailState)
 
+  if (!data) return null // TODO: Add skeleton loader
+
   return (
     <View>
       <View className="px-4">

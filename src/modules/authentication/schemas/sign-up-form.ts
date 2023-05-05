@@ -1,28 +1,13 @@
 import { z } from 'zod'
 
 export const SignUpFormSchema = z.object({
-  name: z.string().nonempty({
-    message: 'Name is required',
-  }),
-  email: z
-    .string()
-    .nonempty({
-      message: 'E-mail is required',
-    })
-    .email({
-      message: 'E-mail format is invalid',
-    }),
+  name: z.string().nonempty("Name can't be empty"),
+  email: z.string().nonempty('E-mail is required').email("E-mail isn't valid"),
   password: z
     .string()
-    .nonempty({
-      message: 'Password is required',
-    })
-    .min(8, {
-      message: 'Password must be at least 8 characters long',
-    })
-    .max(32, {
-      message: 'Password must be at most 32 characters long',
-    }),
+    .nonempty("Password can't be empty")
+    .min(6, "Password can't be less than 6 characters")
+    .max(32, "Password can't be more than 32 characters"),
 })
 
 export type SignUpFormProps = z.infer<typeof SignUpFormSchema>

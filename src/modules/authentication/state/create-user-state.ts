@@ -1,4 +1,4 @@
-import {atom} from "recoil";
+import { atom } from 'recoil'
 
 type Input = {
   name: string
@@ -8,5 +8,5 @@ type Input = {
 
 const createUserState = atom<Input>({
   key: 'createUserState',
-  default: {} as Input
+  default: {} as Input,
 })

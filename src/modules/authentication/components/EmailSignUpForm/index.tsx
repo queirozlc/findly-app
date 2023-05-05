@@ -2,94 +2,82 @@ import { Ionicons } from '@expo/vector-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
-import Input from '../../../../shared/components/Input'
 import { AuthStackParamList } from '../../routes/types'
 import { SignUpFormProps, SignUpFormSchema } from '../../schemas/sign-up-form'
+import ControlledInput from '../../../../shared/components/ControlledInput'
 
 export default function EmailSignUpForm() {
   const navigation = useNavigation<AuthStackParamList>()
   const [passwordVisible, setPasswordVisible] = useState(false)
   const {
-    formState: { errors },
-    control,
     handleSubmit,
+    control,
+    formState: { errors, isDirty, isValid },
   } = useForm<SignUpFormProps>({
     resolver: zodResolver(SignUpFormSchema),
   })
 
-  function handleSignUp({ email, name, password }: SignUpFormProps) {
-    if (errors) {
-      console.log(errors)
-    }
-    console.log({ email, name, password })
+  function handleSignUp(data: SignUpFormProps) {
+    console.log(data)
   }
 
   return (
     <View className="space-y-5">
-      <View>
-        <Controller
+      <View className="space-y-2">
+        <ControlledInput
+          placeholder="Full Name"
+          label="Full Name"
+          capitalize="words"
           control={control}
           name="name"
-          render={({ field: { onChange } }) => (
-            <Input
-              placeholder="Full Name"
-              label="Full Name"
-              capitalize="words"
-              onChange={onChange}
-            />
-          )}
+          hasError={!!(errors.name && isDirty && !isValid)}
+          error={errors.name}
         />
       </View>
 
       <View>
-        <Controller
+        <ControlledInput
+          placeholder="Email"
+          label="Email"
+          capitalize="none"
           control={control}
           name="email"
-          render={({ field: { onChange } }) => (
-            <Input
-              placeholder="Email"
-              label="Email"
-              capitalize="none"
-              onChange={onChange}
-            />
-          )}
+          hasError={!!(errors.email && isDirty && !isValid)}
+          error={errors.email}
         />
       </View>
 
       <View>
-        <Controller
+        <ControlledInput
+          placeholder="Password"
           control={control}
+          label="Password"
           name="password"
-          render={({ field: { onChange } }) => (
-            <Input
-              placeholder="Password"
-              label="Password"
-              keyboardType="default"
-              secureTextEntry={!passwordVisible}
-              capitalize="none"
-              onChange={onChange}
-              icon={
-                passwordVisible ? (
-                  <Ionicons
-                    name="eye-outline"
-                    size={24}
-                    color={colors.zinc['400']}
-                  />
-                ) : (
-                  <Ionicons
-                    name="eye-off-outline"
-                    size={24}
-                    color={colors.zinc['400']}
-                  />
-                )
-              }
-              onTouchablePress={() => setPasswordVisible(!passwordVisible)}
-            />
-          )}
+          keyboardType="default"
+          secureTextEntry={!passwordVisible}
+          capitalize="none"
+          error={errors.password}
+          hasError={!!(errors.password && isDirty && !isValid)}
+          icon={
+            passwordVisible ? (
+              <Ionicons
+                name="eye-outline"
+                size={24}
+                color={colors.zinc['400']}
+              />
+            ) : (
+              <Ionicons
+                name="eye-off-outline"
+                size={24}
+                color={colors.zinc['400']}
+              />
+            )
+          }
+          onTouchablePress={() => setPasswordVisible(!passwordVisible)}
         />
       </View>
       <View className="space-y-12">
@@ -99,6 +87,7 @@ export default function EmailSignUpForm() {
             variant="solid"
             textStyles={{ textTransform: 'uppercase' }}
             onPress={handleSubmit(handleSignUp)}
+            disabled={isDirty && !isValid}
           />
         </View>
 

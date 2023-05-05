@@ -13,7 +13,7 @@ export default function EmailSignInScreen() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView behavior="position" enabled={true}>
           <AuthBanner />
-          <View className="px-5 mt-8">
+          <View className="px-5 mt-4">
             <EmailSignInForm />
           </View>
         </KeyboardAvoidingView>

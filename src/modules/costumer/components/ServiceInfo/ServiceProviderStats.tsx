@@ -10,6 +10,10 @@ export default function ServiceProviderStats() {
   const navigation = useNavigation<ServiceProviderDetailsNavigationProps>()
   const serviceProvider = useRecoilValue(serviceProviderDetailState)
 
+  if (!serviceProvider) {
+    return null // TODO: Add skeleton loader
+  }
+
   return (
     <View className="mt-4">
       <TouchableOpacity
