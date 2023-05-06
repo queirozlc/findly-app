@@ -8,6 +8,7 @@ import {
 import AuthBanner from '../../components/AuthBanner'
 import EmailVerifyInputCard from '../../components/EmailVerifyInput/EmailVerifyInputCard'
 import EmailVerifyInput from '../../components/EmailVerifyInput'
+import VerifyEmailFooter from '../../components/VerifyEmailFooter'
 
 export default function VerifyEmailScreen() {
   return (
@@ -25,6 +26,10 @@ export default function VerifyEmailScreen() {
             <EmailVerifyInputCard>
               <EmailVerifyInput />
             </EmailVerifyInputCard>
+          </View>
+
+          <View>
+            <VerifyEmailFooter />
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

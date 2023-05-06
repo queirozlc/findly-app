@@ -1,26 +1,32 @@
 import { TextInput } from 'react-native'
 import colors from 'tailwindcss/colors'
-import { Ref } from 'react'
+import { useEffect, useRef } from 'react'
 
 type Props = {
-  name: string
-  ref?: Ref<TextInput>
-  index?: number
+  index: number
   onChange: (text: string) => void
   value: string
   hasError?: boolean
+  nextInputIndex: number | null
 }
 
 export default function OptInputBox({
-  ref,
-  index,
   value,
   onChange,
   hasError = false,
+  index,
+  nextInputIndex,
 }: Props) {
+  const inputRef = useRef<TextInput>(null)
+
+  useEffect(() => {
+    if (index === nextInputIndex) {
+      inputRef.current?.focus()
+    }
+  }, [nextInputIndex])
+
   return (
     <TextInput
-      ref={ref}
       onChangeText={
         (text) => onChange(text.toUpperCase()) // Convert to uppercase
       }
@@ -31,6 +37,10 @@ export default function OptInputBox({
       `}
       cursorColor={colors.zinc[500]}
       autoCapitalize={'characters'}
+      maxLength={1}
+      ref={
+        index === nextInputIndex ? inputRef : undefined // Focus on next input
+      }
     />
   )
 }

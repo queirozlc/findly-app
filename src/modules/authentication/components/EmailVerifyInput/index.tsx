@@ -4,43 +4,53 @@ import { verificationCodeState } from '../../state/verification-code-state'
 import OptInputBox from './OptInputBox'
 import { useState } from 'react'
 import Button from '../../../../shared/components/Button'
+import useAuthenticationContext from '../../hooks/useAuthenticationContext'
+import { AxiosError } from 'axios'
 
 export default function EmailVerifyInput() {
+  // TODO: need to implement this api call
+  const { verifyCode, isLoading } = useAuthenticationContext()
   const { code } = useRecoilValue(verificationCodeState)
   const [internalValues, setInternalValues] = useState<string[]>([])
   const [validationError, setValidationError] = useState<string | null>(null)
+  const [nextInputIndex, setNextInputIndex] = useState<number | null>(null)
 
-  function validatePayload() {
-    // check if all values are filled
-    if (internalValues.includes('')) {
-      // if not, set validation error
-      setValidationError('Please fill all the fields')
-      return
-    }
-    // validate if code is correct
-    if (internalValues.join('') === code) {
-      // if correct, remove validation error
-      setValidationError(null)
-      return
+  function handleNextInput(text: string, index: number) {
+    let newInputIndex: number
+
+    if (!text) {
+      newInputIndex = index === 0 ? 0 : index - 1
+      setNextInputIndex(newInputIndex)
     } else {
-      // if not, set validation error
-      setValidationError('Code is incorrect')
+      const lastInputIndex = code.length - 1
+      newInputIndex = index === lastInputIndex ? lastInputIndex : index + 1
+      setNextInputIndex(newInputIndex)
     }
-  }
-
-  function onSubmit() {
-    validatePayload()
-    console.log(internalValues.join(''))
   }
 
   function handleChange(text: string, index: number) {
-    // block user from entering more than 1 character
-    if (text.length > 1) {
-      return
-    }
     const newValues = [...internalValues]
     newValues[index] = text.toUpperCase()
     setInternalValues(newValues)
+    handleNextInput(text, index)
+    if (validationError !== null) setValidationError(null)
+  }
+
+  async function onSubmit() {
+    const enteredCode = internalValues.join('')
+    if (enteredCode !== code) {
+      setValidationError('Code is incorrect')
+      return
+    }
+
+    try {
+      await verifyCode({ code: enteredCode })
+    } catch (error) {
+      const { response } = error as AxiosError
+      if (response?.status === 400) {
+        setValidationError('Code is incorrect')
+      }
+    }
   }
 
   return (
@@ -49,7 +59,8 @@ export default function EmailVerifyInput() {
         {Array.from({ length: code.length }).map((_, index) => (
           <View key={index}>
             <OptInputBox
-              name={`code[${index}]`}
+              index={index}
+              nextInputIndex={nextInputIndex}
               onChange={(text) => handleChange(text, index)}
               value={internalValues[index] || ''}
               hasError={!!validationError}
