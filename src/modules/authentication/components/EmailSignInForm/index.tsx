@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigation } from '@react-navigation/native'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
-import { Image, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
 import { SignInRequest } from '../../../../shared/types/sign-in-request'
@@ -51,20 +51,8 @@ export default function EmailSignInForm() {
             label="Email"
             keyboardType="default"
             capitalize="none"
+            error={errors.email}
           />
-
-          {errors.email && (
-            <View className="flex-row space-x-2 items-center">
-              <Image
-                source={require('../../../../../assets/error_icon.png')}
-                resizeMode={'contain'}
-                className="w-5 h-5"
-              />
-              <Text className="text-sm text-red-500 font-poppins-semi text-center">
-                {errors.email.message}
-              </Text>
-            </View>
-          )}
         </View>
 
         <View>
@@ -76,6 +64,7 @@ export default function EmailSignInForm() {
             keyboardType="default"
             secureTextEntry={!passwordVisible}
             capitalize="none"
+            error={errors.password}
             icon={
               passwordVisible ? (
                 <Ionicons
@@ -93,8 +82,6 @@ export default function EmailSignInForm() {
             }
             onTouchablePress={() => setPasswordVisible(!passwordVisible)}
           />
-
-          {/* Errors here */}
         </View>
       </View>
 
