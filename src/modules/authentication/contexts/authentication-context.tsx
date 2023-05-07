@@ -16,6 +16,7 @@ import { AxiosError } from 'axios'
 import { VerificationCodeRequest } from '../infra/dtos/verification-code-request'
 import { GoogleOAuthResponse } from '../infra/dtos/google-oauth-response'
 import { VerificationCode } from '../../../shared/types/verification-code'
+import { CreateServiceProviderData } from '../../service-provider/api/create-service-provider/create-service-provider-data'
 
 export interface AuthenticationContextProps {
   isAuthenticated: boolean
@@ -27,6 +28,9 @@ export interface AuthenticationContextProps {
   user: User | null
   createCostumer: (data: CreateCostumerRequest) => Promise<VerificationCode>
   verifyCode: (data: { code: string }) => Promise<void>
+  createServiceProvider: (
+    data: CreateServiceProviderData,
+  ) => Promise<VerificationCode>
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextProps>(
@@ -120,6 +124,14 @@ export default function AuthenticationContextProvider({
     }
   }
 
+  async function createServiceProvider(
+    data: CreateServiceProviderData,
+  ): Promise<VerificationCode> {
+    // TODO: implement createServiceProvider
+
+    return {} as VerificationCode
+  }
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -132,6 +144,7 @@ export default function AuthenticationContextProvider({
         OauthResponse,
         createCostumer,
         verifyCode,
+        createServiceProvider,
       }}
     >
       {children}

@@ -7,6 +7,9 @@ import SignUpScreen from '../screens/SignUpScreen'
 import { AuthPropsNavigation } from './types'
 import VerifyEmailScreen from '../screens/VerifyEmail'
 import VerificationCompleteScreen from '../screens/VerificationCompleteScreen'
+import SignUpServiceProviderScreen from '../screens/SignUpServiceProviderScreen'
+import CompleteServiceProviderSignUpScreen from '../screens/CompleteServiceProviderSignUpScreen'
+import AuthBanner from '../components/AuthBanner'
 
 const Stack = createNativeStackNavigator<AuthPropsNavigation>()
 
@@ -18,7 +21,6 @@ export default function AuthRoutes() {
         statusBarTranslucent: true,
         animation: 'slide_from_right',
       }}
-      initialRouteName={'VerificationComplete'}
     >
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
@@ -35,6 +37,20 @@ export default function AuthRoutes() {
       <Stack.Screen
         name="VerificationComplete"
         component={VerificationCompleteScreen}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header() {
+            return <AuthBanner />
+          },
+        }}
+        name={'SignUpServiceProvider'}
+        component={SignUpServiceProviderScreen}
+      />
+      <Stack.Screen
+        name={'CompleteServiceProviderSignUp'}
+        component={CompleteServiceProviderSignUpScreen}
       />
     </Stack.Navigator>
   )

@@ -36,7 +36,10 @@ export default function SignInFooter({ view }: SignInFooterProps) {
       <View>
         <Text className="font-inter-medium text-sm text-center">
           Want to use Findly for business?{' '}
-          <Text className="font-poppins-black text-sm text-brand-violet-500 underline">
+          <Text
+            className="font-poppins-black text-sm text-brand-violet-500 underline"
+            onPress={() => navigation.replace('SignUpServiceProvider')}
+          >
             Continue here.
           </Text>
         </Text>
