@@ -5,7 +5,7 @@ import {
   GOOGLE_OAUTH_SCOPE,
 } from '@env'
 import * as AuthSession from 'expo-auth-session'
-import { createContext, useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 import { SignInRequest } from '../../../shared/types/sign-in-request'
 import { SignInResponse } from '../../../shared/types/sign-in-response'
 import { User } from '../../../shared/types/user'
@@ -36,7 +36,7 @@ export const AuthenticationContext = createContext<AuthenticationContextProps>(
 export default function AuthenticationContextProvider({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
