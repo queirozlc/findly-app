@@ -10,6 +10,7 @@ import VerificationCompleteScreen from '../screens/VerificationCompleteScreen'
 import SignUpServiceProviderScreen from '../screens/SignUpServiceProviderScreen'
 import CompleteServiceProviderSignUpScreen from '../screens/CompleteServiceProviderSignUpScreen'
 import AuthBanner from '../components/AuthBanner'
+import RegisterServiceProviderPhoneScreen from '../screens/RegisterServiceProviderPhoneScreen'
 
 const Stack = createNativeStackNavigator<AuthPropsNavigation>()
 
@@ -57,6 +58,10 @@ export default function AuthRoutes() {
         <Stack.Screen
           name={'CompleteServiceProviderSignUp'}
           component={CompleteServiceProviderSignUpScreen}
+        />
+        <Stack.Screen
+          name={'RegisterServiceProviderPhone'}
+          component={RegisterServiceProviderPhoneScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

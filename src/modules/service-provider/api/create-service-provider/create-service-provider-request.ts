@@ -8,8 +8,8 @@ export type CreateServiceProviderRequest = {
   name: string
   email: string
   password: string
-  phone: PhoneProps
-  birthDate: string
+  phone?: PhoneProps
+  birthDate?: string
   cnpj?: string
   cpf?: string
 }

@@ -1,7 +1,6 @@
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import AuthBanner from '../../components/AuthBanner'
 import ShadowBoxCard from '../../../../shared/components/ShadowBoxCard'
-import TextTitle from '../../../../shared/components/TextTitle'
 import Button from '../../../../shared/components/Button'
 import { useNavigation } from '@react-navigation/native'
 import { AuthStackParamList } from '../../routes/types'
@@ -19,10 +18,10 @@ export default function VerificationCompleteScreen() {
         <ShadowBoxCard>
           <View className="space-y-4">
             <View>
-              <TextTitle>
+              <Text className={'font-poppins-black text-xl text-dark-gray-500'}>
                 Your account has been verified successfully, you can now login
                 to your account.
-              </TextTitle>
+              </Text>
             </View>
 
             <View>

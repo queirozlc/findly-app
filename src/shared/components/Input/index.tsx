@@ -21,7 +21,7 @@ export type InputProps = {
   onTouchablePress?: () => void
   value?: string
   hasError?: boolean
-  error?: FieldError
+  error?: FieldError | { message: string }
   onFocus?: () => void
   onPressIn?: () => void
   editable?: boolean

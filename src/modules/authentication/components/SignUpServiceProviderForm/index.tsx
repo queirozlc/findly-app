@@ -27,7 +27,7 @@ export default function SignUpServiceProviderForm() {
     createServiceProviderState,
   )
 
-  async function handleSignUp(data: SignUpServiceProviderDTO) {
+  function handleSignUp(data: SignUpServiceProviderDTO) {
     setCreateServiceProviderRequestState(data)
     navigation.navigate('CompleteServiceProviderSignUp')
   }
