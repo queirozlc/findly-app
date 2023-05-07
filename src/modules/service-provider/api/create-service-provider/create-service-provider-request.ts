@@ -4,7 +4,7 @@ type PhoneProps = {
   countryCode: string
 }
 
-export type CreateServiceProviderData = {
+export type CreateServiceProviderRequest = {
   name: string
   email: string
   password: string

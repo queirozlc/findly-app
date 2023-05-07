@@ -1,50 +1,35 @@
 import {
-  Image,
-  KeyboardTypeOptions,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+  TextInputMask,
+  TextInputMaskOptionProp,
+  TextInputMaskTypeProp,
+} from 'react-native-masked-text'
+import { useState } from 'react'
 import colors from 'tailwindcss/colors'
-import { FieldError } from 'react-hook-form'
-import { ReactNode, useState } from 'react'
+import { InputProps } from '../Input'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 
-export type InputProps = {
-  placeholder?: string
-  secureTextEntry?: boolean
-  icon?: ReactNode
-  onChange?: (value: string) => void
-  keyboardType?: KeyboardTypeOptions
-  label: string
-  capitalize?: 'none' | 'sentences' | 'words' | 'characters'
-  onTouchablePress?: () => void
-  value?: string
-  hasError?: boolean
-  error?: FieldError
-  onFocus?: () => void
-  onPressIn?: () => void
-  editable?: boolean
+type InputMaskedProps = InputProps & {
+  type: TextInputMaskTypeProp
+  options?: TextInputMaskOptionProp
 }
 
-export default function Input({
-  placeholder,
-  secureTextEntry,
-  icon,
+export default function InputMasked({
+  type,
+  error,
+  hasError = false,
+  value,
   keyboardType,
   onChange,
   label,
   capitalize,
+  placeholder,
+  secureTextEntry,
   onTouchablePress,
-  value,
-  hasError = false,
-  error,
+  icon,
   onFocus,
-  onPressIn,
-  editable = true,
-}: InputProps) {
+  options,
+}: InputMaskedProps) {
   const [onFocusState, setOnFocus] = useState(false)
-
   return (
     <View className="space-y-2">
       <View
@@ -52,10 +37,11 @@ export default function Input({
         style={{ position: 'relative' }}
       >
         <Text className="text-base font-inter-medium text-left">{label}</Text>
-        <TextInput
+        <TextInputMask
+          type={type}
+          options={options}
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
-          onPressIn={onPressIn}
           className={`border px-4 py-2 rounded-lg h-14 font-inter-regular text-base ${
             hasError ? 'border-error-500' : 'border-dark-gray-500'
           } ${onFocusState && !error && 'border-primary-500'}`}
@@ -69,7 +55,6 @@ export default function Input({
             setOnFocus(true)
             if (onFocus) onFocus()
           }}
-          editable={editable}
         />
         <TouchableOpacity
           className="absolute right-5 top-10"

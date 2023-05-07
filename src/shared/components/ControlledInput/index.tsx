@@ -1,12 +1,16 @@
 import { Control, Controller } from 'react-hook-form'
 import Input, { InputProps } from '../Input'
 
-type Props = InputProps & {
+export type ControlledInputProps = InputProps & {
   control: Control<any>
   name: string
 }
 
-export default function ControlledInput({ control, name, ...rest }: Props) {
+export default function ControlledInput({
+  control,
+  name,
+  ...rest
+}: ControlledInputProps) {
   return (
     <Controller
       control={control}

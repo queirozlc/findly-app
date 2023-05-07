@@ -10,6 +10,8 @@ import { SignUpFormSchema } from '../../schemas/sign-up-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { SignUpServiceProviderDTO } from '../../schemas/sign-up-service-provider'
+import { useSetRecoilState } from 'recoil'
+import { createServiceProviderState } from '../../state/create-service-provider-state'
 
 export default function SignUpServiceProviderForm() {
   const navigation = useNavigation<AuthStackParamList>()
@@ -21,9 +23,13 @@ export default function SignUpServiceProviderForm() {
     resolver: zodResolver(SignUpFormSchema),
   })
   const [passwordVisible, setPasswordVisible] = useState(false)
+  const setCreateServiceProviderRequestState = useSetRecoilState(
+    createServiceProviderState,
+  )
 
   async function handleSignUp(data: SignUpServiceProviderDTO) {
-    console.log(data)
+    setCreateServiceProviderRequestState(data)
+    navigation.navigate('CompleteServiceProviderSignUp')
   }
 
   return (

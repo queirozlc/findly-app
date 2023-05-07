@@ -30,6 +30,11 @@ export const SignUpServiceProviderSchema = z.object({
     .refine((value) => value?.match(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/), {
       message: 'CPF is invalid, try: 000.000.000-00',
     }),
+  phone: z.object({
+    areaCode: z.string().nonempty('Area code cannot be empty'),
+    number: z.string().nonempty('Phone number cannot be empty'),
+    countryCode: z.string().nonempty('Country code cannot be empty'),
+  }),
 })
 
 export type SignUpServiceProviderDTO = z.infer<

@@ -38,20 +38,27 @@ export default function AuthRoutes() {
         name="VerificationComplete"
         component={VerificationCompleteScreen}
       />
-      <Stack.Screen
-        options={{
+
+      {/*
+        Routes to be used by service providers only.
+      */}
+      <Stack.Group
+        screenOptions={{
           headerShown: true,
           header() {
             return <AuthBanner />
           },
         }}
-        name={'SignUpServiceProvider'}
-        component={SignUpServiceProviderScreen}
-      />
-      <Stack.Screen
-        name={'CompleteServiceProviderSignUp'}
-        component={CompleteServiceProviderSignUpScreen}
-      />
+      >
+        <Stack.Screen
+          name={'SignUpServiceProvider'}
+          component={SignUpServiceProviderScreen}
+        />
+        <Stack.Screen
+          name={'CompleteServiceProviderSignUp'}
+          component={CompleteServiceProviderSignUpScreen}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   )
 }

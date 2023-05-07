@@ -11,15 +11,15 @@ import SignUpServiceProviderForm from '../../components/SignUpServiceProviderFor
 export default function SignUpServiceProviderScreen() {
   return (
     <View className="flex-1 bg-white">
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        >
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView>
             <SignUpServiceProviderForm />
           </ScrollView>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </View>
   )
 }
