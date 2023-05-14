@@ -15,7 +15,7 @@ enum RoleName {
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 export default function AppRoutes() {
-  const roles = [RoleName.SERVICE_PROVIDER] // TODO: implement authentication
+  const roles = [RoleName.COSTUMER] // TODO: implement authentication
 
   return (
     <Stack.Navigator

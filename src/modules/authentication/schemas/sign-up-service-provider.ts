@@ -88,7 +88,6 @@ export const CompleteSignUpServiceProviderSchema = z
 
 export const SignUpServiceProviderPhoneSchema = z.object({
   phone: z.object({
-    areaCode: z.string().nonempty('Area code cannot be empty'),
     number: z.string().nonempty('Phone number cannot be empty'),
     countryCode: z.string().nonempty('Country code cannot be empty'),
   }),
