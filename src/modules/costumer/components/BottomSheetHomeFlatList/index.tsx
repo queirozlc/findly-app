@@ -32,7 +32,7 @@ export default function BottomSheetHomeFlatList() {
   }, [])
 
   useEffect(() => {
-    if (mapStateValue === true) {
+    if (mapStateValue) {
       setIndex(0)
       bottomSheetRef.current?.snapToIndex(0)
     }

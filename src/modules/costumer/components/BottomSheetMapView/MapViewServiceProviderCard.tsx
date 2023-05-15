@@ -37,7 +37,7 @@ export default function MapViewServiceProviderCard() {
     >
       <View className="relative">
         <Image
-          source={{ uri: serviceProviderData?.thumbnail }}
+          source={serviceProviderData?.thumbnail}
           resizeMode="contain"
           className="w-full h-60 rounded-t-2xl"
         />

@@ -14,7 +14,7 @@ export default function ServiceBanner() {
   return (
     <View>
       <ImageBackground
-        source={{ uri: data.image }}
+        source={data.image}
         resizeMode="cover"
         className="w-full h-60"
       >

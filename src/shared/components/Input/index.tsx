@@ -3,6 +3,7 @@ import {
   KeyboardTypeOptions,
   Text,
   TextInput,
+  TextInputProps,
   TouchableOpacity,
   View,
 } from 'react-native'
@@ -25,6 +26,7 @@ export type InputProps = {
   onFocus?: () => void
   onPressIn?: () => void
   editable?: boolean
+  styles?: TextInputProps['style']
 }
 
 export default function Input({
@@ -42,6 +44,7 @@ export default function Input({
   onFocus,
   onPressIn,
   editable = true,
+  styles,
 }: InputProps) {
   const [onFocusState, setOnFocus] = useState(false)
 
@@ -70,6 +73,7 @@ export default function Input({
             if (onFocus) onFocus()
           }}
           editable={editable}
+          style={styles}
         />
         <TouchableOpacity
           className="absolute right-5 top-10"

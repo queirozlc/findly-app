@@ -14,7 +14,7 @@ export default function MapButton() {
 
   return (
     <>
-      {mapStateValue === false && (
+      {!mapStateValue && (
         <View
           className="absolute"
           style={{

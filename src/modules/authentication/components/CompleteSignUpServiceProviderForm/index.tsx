@@ -37,7 +37,7 @@ export default function CompleteSignUpServiceProviderForm() {
       cnpj,
       birthDate,
     }))
-    navigation.replace('VerifyEmail')
+    navigation.navigate('RegisterServiceProviderPhone')
   }
 
   return (

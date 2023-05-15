@@ -10,7 +10,7 @@ export default function ServiceProviderDetailsBanner() {
   return (
     <View>
       <ImageBackground
-        source={{ uri: data?.thumbnail }}
+        source={data?.thumbnail}
         className="w-full h-56"
         resizeMode="cover"
       >
