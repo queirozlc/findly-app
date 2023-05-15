@@ -14,13 +14,12 @@ import CountryCodePickerInput from '../../../../shared/components/ControlledCoun
 export default function RegisterServiceProviderPhoneForm() {
   const [countryCode, setCountryCode] = useState<CountryCode | undefined>()
   const [country, setCountry] = useState<Country>({} as Country)
-  const [countryCodeError, setCountryCodeError] = useState('')
   const {
     handleSubmit,
     control,
     setValue,
     getValues,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
   } = useForm<SignUpServiceProviderPhoneDTO>({
     resolver: zodResolver(SignUpServiceProviderPhoneSchema),
   })
@@ -38,13 +37,15 @@ export default function RegisterServiceProviderPhoneForm() {
   return (
     <View className={`space-y-10 ${errors && 'space-y-4'}`}>
       <View className={'flex-row items-center space-x-2'}>
-        <View className={`space-y-2.5 ${errors.countryCode && 'mt-7'}`}>
+        <View
+          className={`space-y-2.5 ${errors.countryCode && !isValid && 'mt-7'}`}
+        >
           <Text className="font-inter-medium text-base capitalize">
             Country code
           </Text>
           <View
             className={`border ${
-              errors.countryCode && isDirty && !isValid
+              errors.countryCode && !isValid
                 ? 'border-error-500'
                 : 'border-primary-500'
             } px-2 w-28 h-14 flex-row items-center rounded-md`}
@@ -67,7 +68,7 @@ export default function RegisterServiceProviderPhoneForm() {
             )}
           </View>
 
-          {errors.countryCode && isDirty && !isValid && (
+          {errors.countryCode && !isValid && (
             <View className="flex-row space-x-2 items-center">
               <Image
                 source={require('../../../../../assets/error_icon.png')}
