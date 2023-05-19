@@ -1,23 +1,22 @@
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form'
 import {
   SignUpServiceProviderPhoneDTO,
-  SignUpServiceProviderPhoneSchema
-} from "../../schemas/sign-up-service-provider";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Text, View } from "react-native";
-import ControlledInputMask from "../../../../shared/components/ControlledInputMask";
-import ControlledCountryCodePickerInput from "../../../../shared/components/ControlledCountryPicker";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { createServiceProviderState } from "../../state/create-service-provider-state";
-import { useMutation, UseMutationResult } from "react-query";
-import {
-  CreateServiceProviderService
-} from "../../../service-provider/api/create-service-provider/create-service-provider";
-import { AxiosError, AxiosResponse } from "axios";
-import { VerificationCode } from "../../../../shared/types/verification-code";
-import { verificationCodeState } from "../../state/verification-code-state";
-import { useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "../../routes/types";
+  SignUpServiceProviderPhoneSchema,
+} from '../../schemas/sign-up-service-provider'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Text, View } from 'react-native'
+import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
+import ControlledCountryCodePickerInput from '../../../../shared/components/ControlledCountryPicker'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { createServiceProviderState } from '../../state/create-service-provider-state'
+import { useMutation, UseMutationResult } from 'react-query'
+import { CreateServiceProviderService } from '../../../service-provider/api/create-service-provider/create-service-provider'
+import { AxiosError, AxiosResponse } from 'axios'
+import { VerificationCode } from '../../../../shared/types/verification-code'
+import { verificationCodeState } from '../../state/verification-code-state'
+import { useNavigation } from '@react-navigation/native'
+import { AuthStackParamList } from '../../routes/types'
+import Button from '../../../../shared/components/Button'
 
 export default function RegisterServiceProviderPhoneForm() {
   const [createServiceProviderValue, setCreateServiceProvider] = useRecoilState(
@@ -103,15 +102,17 @@ export default function RegisterServiceProviderPhoneForm() {
       </View>
 
       <View>
-        <View className={'flex-row items-center s"flex-row items-center space-x-2"rror.response && (
-            <Text className={'text-error-500 font-int"text-error-500 font-inter-semi text-sm"response.data.message}
+        <View className={'flex-row items-center space-x-2'}>
+          {error && error.response && (
+            <Text className={'text-error-500 font-inter-semi text-sm'}>
+              {error.response.data.message}
             </Text>
           )}
         </View>
         <Button
           title={'Continue'}
-          va"Continue"derNotification'}
-   "orderNotification"dleSubmit(onSubmit)}
+          variant={'orderNotification'}
+          onPress={handleSubmit(onSubmit)}
           disabled={
             (!isValid && !!(errors.number || errors.countryCode)) || isLoading
           }

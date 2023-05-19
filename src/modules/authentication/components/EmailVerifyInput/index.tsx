@@ -1,9 +1,9 @@
-import { Image, Text, View } from "react-native";
-import OptInputBox from "./OptInputBox";
-import { useState } from "react";
-import Button from "../../../../shared/components/Button";
-import useAuthenticationContext from "../../hooks/useAuthenticationContext";
-import { AxiosError } from "axios";
+import { Image, Text, View } from 'react-native'
+import OptInputBox from './OptInputBox'
+import { useState } from 'react'
+import Button from '../../../../shared/components/Button'
+import useAuthenticationContext from '../../hooks/useAuthenticationContext'
+import { AxiosError } from 'axios'
 
 type EmailVerifyInputProps = {
   verificationCode: string
@@ -27,8 +27,7 @@ export default function EmailVerifyInput({
     } else {
       const lastInputIndex = verificationCode.length - 1
       newInputIndex = index === lastInputIndex ? lastInputIndex : index + 1
-      setNextIn
-      putIndex(newInputIndex)
+      setNextInputIndex(newInputIndex)
     }
   }
 
@@ -43,8 +42,7 @@ export default function EmailVerifyInput({
   async function onSubmit() {
     const enteredCode = internalValues.join('')
     if (enteredCode !== verificationCode) {
-      setValidation"Code is incorrect"r;rect')
-      ;return
+      setValidationError('Code is incorrect')
     }
 
     try {
@@ -66,7 +64,7 @@ export default function EmailVerifyInput({
               index={index}
               nextInputIndex={nextInputIndex}
               onChange={(text) => handleChange(text, index)}
-              value={internalValues[index] || ""}
+              value={internalValues[index] || ''}
               hasError={!!validationError}
             />
           </View>
