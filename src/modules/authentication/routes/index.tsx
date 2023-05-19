@@ -22,7 +22,6 @@ export default function AuthRoutes() {
         statusBarTranslucent: true,
         animation: 'slide_from_right',
       }}
-      initialRouteName={'RegisterServiceProviderPhone'}
     >
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />

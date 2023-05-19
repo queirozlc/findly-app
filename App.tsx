@@ -24,9 +24,11 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { RecoilRoot } from 'recoil'
 import AuthenticationContext from './src/modules/authentication/contexts/authentication-context'
 import Router from './src/shared/routes'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
+  const queryClient = new QueryClient()
 
   useEffect(() => {
     async function prepare() {
@@ -69,13 +71,15 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
-        <AuthenticationContext>
-          <RecoilRoot>
-            <View onLayout={onLayout} className="flex-1">
-              <Router />
-            </View>
-          </RecoilRoot>
-        </AuthenticationContext>
+        <QueryClientProvider client={queryClient}>
+          <AuthenticationContext>
+            <RecoilRoot>
+              <View onLayout={onLayout} className="flex-1">
+                <Router />
+              </View>
+            </RecoilRoot>
+          </AuthenticationContext>
+        </QueryClientProvider>
       </NavigationContainer>
     </GestureHandlerRootView>
   )

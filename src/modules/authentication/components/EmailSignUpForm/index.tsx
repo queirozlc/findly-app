@@ -35,7 +35,7 @@ export default function EmailSignUpForm() {
       const { code } = await createCostumer(data)
       setCreateUserState(data)
       setVerificationCodeState({ code })
-      navigation.replace('VerifyEmail')
+      navigation.replace('VerifyEmail', { code })
     } catch (error) {
       const { response } = error as AxiosError
       console.log(response?.data)

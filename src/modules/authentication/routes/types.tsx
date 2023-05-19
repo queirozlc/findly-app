@@ -7,7 +7,7 @@ export type AuthPropsNavigation = {
   ResetPassword: undefined
   UsernamePasswordSignIn: undefined
   UsernamePasswordSignUp: undefined
-  VerifyEmail: undefined
+  VerifyEmail: { code: string }
   VerificationComplete: undefined
   SignUpServiceProvider: undefined
   CompleteServiceProviderSignUp: undefined

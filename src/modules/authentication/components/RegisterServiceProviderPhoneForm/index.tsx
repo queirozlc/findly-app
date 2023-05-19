@@ -1,88 +1,94 @@
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form";
 import {
   SignUpServiceProviderPhoneDTO,
-  SignUpServiceProviderPhoneSchema,
-} from '../../schemas/sign-up-service-provider'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Image, Text, View } from 'react-native'
-import { useState } from 'react'
-import { Country, CountryCode } from 'react-native-country-picker-modal'
-import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
-import Button from '../../../../shared/components/Button'
-import CountryCodePickerInput from '../../../../shared/components/ControlledCountryPicker'
+  SignUpServiceProviderPhoneSchema
+} from "../../schemas/sign-up-service-provider";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Text, View } from "react-native";
+import ControlledInputMask from "../../../../shared/components/ControlledInputMask";
+import ControlledCountryCodePickerInput from "../../../../shared/components/ControlledCountryPicker";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { createServiceProviderState } from "../../state/create-service-provider-state";
+import { useMutation, UseMutationResult } from "react-query";
+import {
+  CreateServiceProviderService
+} from "../../../service-provider/api/create-service-provider/create-service-provider";
+import { AxiosError, AxiosResponse } from "axios";
+import { VerificationCode } from "../../../../shared/types/verification-code";
+import { verificationCodeState } from "../../state/verification-code-state";
+import { useNavigation } from "@react-navigation/native";
+import { AuthStackParamList } from "../../routes/types";
 
 export default function RegisterServiceProviderPhoneForm() {
-  const [countryCode, setCountryCode] = useState<CountryCode | undefined>()
-  const [country, setCountry] = useState<Country>({} as Country)
+  const [createServiceProviderValue, setCreateServiceProvider] = useRecoilState(
+    createServiceProviderState,
+  )
+  const navigation = useNavigation<AuthStackParamList>()
+  const setVerificationCode = useSetRecoilState(verificationCodeState)
+  const createServiceProvider = new CreateServiceProviderService()
+  const {
+    data: response,
+    error,
+    isLoading,
+    mutate,
+  }: UseMutationResult<
+    AxiosResponse<VerificationCode>,
+    AxiosError<any>,
+    SignUpServiceProviderPhoneDTO
+  > = useMutation(() => {
+    return createServiceProvider.execute(createServiceProviderValue)
+  })
   const {
     handleSubmit,
     control,
     setValue,
-    getValues,
     formState: { errors, isValid },
   } = useForm<SignUpServiceProviderPhoneDTO>({
     resolver: zodResolver(SignUpServiceProviderPhoneSchema),
   })
-  const onSelect = (country: Country) => {
-    setCountryCode(country.cca2)
-    setCountry(country)
-    setValue('countryCode', `+${country.callingCode[0]}`)
-    console.log(getValues('countryCode'))
-  }
 
-  function onSubmit(data: SignUpServiceProviderPhoneDTO) {
-    console.log(data)
+  function onSubmit({ countryCode, number }: SignUpServiceProviderPhoneDTO) {
+    const areaCode = number.substring(1, 3)
+    const phoneNumber = number.substring(4, 15).trim()
+    setCreateServiceProvider((prevState) => ({
+      ...prevState,
+      phone: {
+        countryCode,
+        areaCode,
+        number: phoneNumber,
+      },
+    }))
+    mutate({
+      countryCode,
+      number: phoneNumber,
+    })
+
+    if (response) {
+      console.log('Entrou aqui')
+      setVerificationCode({
+        code: response.data.code,
+      })
+    } else {
+      return
+    }
+    navigation.replace('VerifyEmail', { code: response.data.code })
   }
 
   return (
-    <View className={`space-y-10 ${errors && 'space-y-4'}`}>
+    <View className={`space-y-10`}>
       <View className={'flex-row items-center space-x-2'}>
-        <View
-          className={`space-y-2.5 ${errors.countryCode && !isValid && 'mt-7'}`}
-        >
-          <Text className="font-inter-medium text-base capitalize">
-            Country code
-          </Text>
-          <View
-            className={`border ${
-              errors.countryCode && !isValid
-                ? 'border-error-500'
-                : 'border-primary-500'
-            } px-2 w-28 h-14 flex-row items-center rounded-md`}
-          >
-            <Controller
-              control={control}
-              name={'countryCode'}
-              render={() => (
-                <CountryCodePickerInput
-                  countryCode={countryCode}
-                  onSelect={onSelect}
-                />
-              )}
-            />
-
-            {country.callingCode && (
-              <Text className="font-inter-medium text-base text-dark-gray-500">
-                +{country.callingCode[0]}
-              </Text>
-            )}
-          </View>
-
-          {errors.countryCode && !isValid && (
-            <View className="flex-row space-x-2 items-center">
-              <Image
-                source={require('../../../../../assets/error_icon.png')}
-                resizeMode={'contain'}
-                className="w-5 h-5"
-              />
-              <Text className="text-sm text-red-500 font-poppins-semi text-center">
-                {errors.countryCode?.message}
-              </Text>
-            </View>
-          )}
+        <View>
+          <ControlledCountryCodePickerInput
+            control={control}
+            hasError={!!errors.countryCode && !isValid}
+            error={errors.countryCode}
+            setValue={setValue}
+          />
         </View>
 
-        <View className={`flex-1 ${errors.number && 'mt-7'}`}>
+        <View
+          className={`flex-1 ${errors.number && !errors.countryCode && 'mt-0'}`}
+        >
           <ControlledInputMask
             label={'Phone Number'}
             control={control}
@@ -97,11 +103,19 @@ export default function RegisterServiceProviderPhoneForm() {
       </View>
 
       <View>
+        <View className={'flex-row items-center s"flex-row items-center space-x-2"rror.response && (
+            <Text className={'text-error-500 font-int"text-error-500 font-inter-semi text-sm"response.data.message}
+            </Text>
+          )}
+        </View>
         <Button
           title={'Continue'}
-          variant={'orderNotification'}
-          onPress={handleSubmit(onSubmit)}
-          disabled={!isValid && !!(errors.number || errors.countryCode)}
+          va"Continue"derNotification'}
+   "orderNotification"dleSubmit(onSubmit)}
+          disabled={
+            (!isValid && !!(errors.number || errors.countryCode)) || isLoading
+          }
+          isLoading={isLoading}
         />
       </View>
     </View>

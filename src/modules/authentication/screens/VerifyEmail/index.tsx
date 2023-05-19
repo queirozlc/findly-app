@@ -9,8 +9,12 @@ import AuthBanner from '../../components/AuthBanner'
 import EmailVerifyInputCard from '../../components/EmailVerifyInput/EmailVerifyInputCard'
 import EmailVerifyInput from '../../components/EmailVerifyInput'
 import VerifyEmailFooter from '../../components/VerifyEmailFooter'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { AuthPropsNavigation } from '../../routes/types'
 
-export default function VerifyEmailScreen() {
+type RouteProps = NativeStackScreenProps<AuthPropsNavigation, 'VerifyEmail'>
+export default function VerifyEmailScreen({ route }: RouteProps) {
+  const { code } = route.params
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
@@ -23,7 +27,7 @@ export default function VerifyEmailScreen() {
 
         <View>
           <EmailVerifyInputCard>
-            <EmailVerifyInput />
+            <EmailVerifyInput verificationCode={code} />
           </EmailVerifyInputCard>
         </View>
 
