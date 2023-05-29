@@ -1,8 +1,7 @@
-import { API_URL } from '@env'
 import axios, { AxiosResponse } from 'axios'
 
 const app = axios.create({
-  baseURL: API_URL,
+  baseURL: 'https://10.0.2.2:3000',
   withCredentials: true,
 })
 

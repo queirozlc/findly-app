@@ -4,15 +4,14 @@ import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
+import { useSetRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
+import ControlledInput from '../../../../shared/components/ControlledInput'
+import useAuthenticationContext from '../../hooks/useAuthenticationContext'
 import { AuthStackParamList } from '../../routes/types'
 import { SignUpFormProps, SignUpFormSchema } from '../../schemas/sign-up-form'
-import ControlledInput from '../../../../shared/components/ControlledInput'
-import { useSetRecoilState } from 'recoil'
 import { createUserState } from '../../state/create-user-state'
-import useAuthenticationContext from '../../hooks/useAuthenticationContext'
-import { AxiosError } from 'axios'
 import { verificationCodeState } from '../../state/verification-code-state'
 
 export default function EmailSignUpForm() {
@@ -31,15 +30,8 @@ export default function EmailSignUpForm() {
 
   async function handleSignUp(data: SignUpFormProps) {
     if (!isValid) return
-    try {
-      const { code } = await createCostumer(data)
-      setCreateUserState(data)
-      setVerificationCodeState({ code })
-      navigation.replace('VerifyEmail', { code })
-    } catch (error) {
-      const { response } = error as AxiosError
-      console.log(response?.data)
-    }
+    setCreateUserState(data)
+    navigation.replace('CustomerBirthDate')
   }
 
   return (

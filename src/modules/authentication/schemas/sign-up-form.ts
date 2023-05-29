@@ -11,15 +11,46 @@ export const SignUpFormSchema = z.object({
 })
 
 export const DateOfBirthSchema = z.object({
-  date: z
+  birthDate: z
     .string()
-    .nonempty('Birth date cannot be empty')
+    .nonempty("Birth date can't be empty")
+    .regex(/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/, {
+      message: 'Birth date format is invalid, try: dd/MM/yyyy',
+    })
     .refine(
-      (value) =>
-        value.match(/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/),
-      {
-        message: 'Invalid date format, expected dd/mm/yyyy.',
+      (value) => {
+        const [day, month, year] = value.split('/').map(Number)
+        if (day < 1 || day > 31) {
+          return false
+        }
+
+        if (month < 1 || month > 12) {
+          return false
+        }
+
+        if (year < 1900 || year > new Date().getFullYear()) {
+          return false
+        }
+
+        return true
       },
+      { message: 'Birth date is wrong' },
+    )
+    .refine(
+      (value) => {
+        // grab the birthdate and split it into day, month and year to verify if the user is at least 16 years old
+        const [day, month, year] = value.split('/').map(Number)
+        const birthDate = new Date(year, month - 1, day)
+        const today = new Date()
+        const age = today.getFullYear() - birthDate.getFullYear()
+        const monthDiff = today.getMonth() - birthDate.getMonth()
+        const dayDiff = today.getDate() - birthDate.getDate()
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+          return age - 1 >= 16
+        }
+        return age >= 16
+      },
+      { message: 'You must be at least 16 years old' },
     ),
 })
 

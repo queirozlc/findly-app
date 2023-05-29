@@ -1,16 +1,17 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import AuthBanner from '../components/AuthBanner'
+import CompleteServiceProviderSignUpScreen from '../screens/CompleteServiceProviderSignUpScreen'
+import CustomerBirthDateScreen from '../screens/CustomerBirthDateScreen'
 import EmailSignInScreen from '../screens/EmailSignInScreen'
 import EmailSignUpScreen from '../screens/EmailSignUpScreen'
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
+import RegisterServiceProviderPhoneScreen from '../screens/RegisterServiceProviderPhoneScreen'
 import SignInScreen from '../screens/SignInScreen'
 import SignUpScreen from '../screens/SignUpScreen'
-import { AuthPropsNavigation } from './types'
-import VerifyEmailScreen from '../screens/VerifyEmail'
-import VerificationCompleteScreen from '../screens/VerificationCompleteScreen'
 import SignUpServiceProviderScreen from '../screens/SignUpServiceProviderScreen'
-import CompleteServiceProviderSignUpScreen from '../screens/CompleteServiceProviderSignUpScreen'
-import AuthBanner from '../components/AuthBanner'
-import RegisterServiceProviderPhoneScreen from '../screens/RegisterServiceProviderPhoneScreen'
+import VerificationCompleteScreen from '../screens/VerificationCompleteScreen'
+import VerifyEmailScreen from '../screens/VerifyEmail'
+import { AuthPropsNavigation } from './types'
 
 const Stack = createNativeStackNavigator<AuthPropsNavigation>()
 
@@ -62,6 +63,16 @@ export default function AuthRoutes() {
         <Stack.Screen
           name={'RegisterServiceProviderPhone'}
           component={RegisterServiceProviderPhoneScreen}
+        />
+
+        <Stack.Screen
+          name="CustomerBirthDate"
+          component={CustomerBirthDateScreen}
+          options={{
+            header() {
+              return <AuthBanner />
+            },
+          }}
         />
       </Stack.Group>
     </Stack.Navigator>

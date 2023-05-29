@@ -1,22 +1,22 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigation } from '@react-navigation/native'
+import { AxiosError, AxiosResponse } from 'axios'
 import { useForm } from 'react-hook-form'
+import { Text, View } from 'react-native'
+import { useMutation, UseMutationResult } from 'react-query'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import Button from '../../../../shared/components/Button'
+import ControlledCountryCodePickerInput from '../../../../shared/components/ControlledCountryPicker'
+import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
+import { VerificationCode } from '../../../../shared/types/verification-code'
+import { CreateServiceProviderService } from '../../../service-provider/api/create-service-provider/create-service-provider'
+import { AuthStackParamList } from '../../routes/types'
 import {
   SignUpServiceProviderPhoneDTO,
   SignUpServiceProviderPhoneSchema,
 } from '../../schemas/sign-up-service-provider'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Text, View } from 'react-native'
-import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
-import ControlledCountryCodePickerInput from '../../../../shared/components/ControlledCountryPicker'
-import { useRecoilState, useSetRecoilState } from 'recoil'
 import { createServiceProviderState } from '../../state/create-service-provider-state'
-import { useMutation, UseMutationResult } from 'react-query'
-import { CreateServiceProviderService } from '../../../service-provider/api/create-service-provider/create-service-provider'
-import { AxiosError, AxiosResponse } from 'axios'
-import { VerificationCode } from '../../../../shared/types/verification-code'
 import { verificationCodeState } from '../../state/verification-code-state'
-import { useNavigation } from '@react-navigation/native'
-import { AuthStackParamList } from '../../routes/types'
-import Button from '../../../../shared/components/Button'
 
 export default function RegisterServiceProviderPhoneForm() {
   const [createServiceProviderValue, setCreateServiceProvider] = useRecoilState(
@@ -61,16 +61,6 @@ export default function RegisterServiceProviderPhoneForm() {
       countryCode,
       number: phoneNumber,
     })
-
-    if (response) {
-      console.log('Entrou aqui')
-      setVerificationCode({
-        code: response.data.code,
-      })
-    } else {
-      return
-    }
-    navigation.replace('VerifyEmail', { code: response.data.code })
   }
 
   return (

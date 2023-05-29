@@ -86,7 +86,7 @@ export default function ControlledCountryCodePickerInput({
       {error && hasError && (
         <View className="flex-row space-x-2 items-center">
           <Image
-            source={require('../../../../../../../../assets/error_icon.png')}
+            source={require('../../../../assets/error_icon.png')}
             resizeMode={'contain'}
             className="w-5 h-5"
           />
