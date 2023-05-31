@@ -13,9 +13,7 @@ export class AuthenticationService extends ApiService {
     email,
     password,
   }: SignInRequest): Promise<AxiosResponse<SignInResponse>> {
-    const response = await this.post(this.url, { email, password })
-    console.log(response)
-    return response
+    return this.post('', { email, password })
   }
 
   async signInWithGoogle(): Promise<AxiosResponse<SignInResponse>> {
@@ -25,6 +23,6 @@ export class AuthenticationService extends ApiService {
   async verifyCode({
     code,
   }: VerificationCodeRequest): Promise<AxiosResponse<void>> {
-    return this.post(`${this.url}/email/verify`, { code })
+    return this.post(`/email/verify`, { code })
   }
 }

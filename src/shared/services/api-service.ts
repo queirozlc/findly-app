@@ -1,7 +1,8 @@
+import { API_URL } from '@env'
 import axios, { AxiosResponse } from 'axios'
 
 const app = axios.create({
-  baseURL: 'https://10.0.2.2:3000',
+  baseURL: API_URL,
   withCredentials: true,
 })
 
@@ -10,11 +11,11 @@ export abstract class ApiService {
     this.url = url
   }
 
-  protected post(requestUrl: string, body: unknown): Promise<AxiosResponse> {
+  post(requestUrl: string, body: unknown): Promise<AxiosResponse> {
     return app.post(`${this.url}${requestUrl}`, body)
   }
 
-  protected get(requestUrl: string): Promise<AxiosResponse> {
+  get(requestUrl: string): Promise<AxiosResponse> {
     return app.get(`${this.url}${requestUrl}`)
   }
 }
