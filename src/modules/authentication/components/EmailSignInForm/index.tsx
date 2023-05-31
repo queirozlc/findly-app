@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import { useMutation } from 'react-query'
+import { useSetRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
 import ControlledInput from '../../../../shared/components/ControlledInput'
@@ -14,11 +15,13 @@ import { SignInRequest } from '../../../../shared/types/sign-in-request'
 import { AuthenticationService } from '../../infra/service/authentication-service'
 import { AuthStackParamList } from '../../routes/types'
 import { SignInFormSchema, SignInFormValues } from '../../schemas/sign-in-form'
+import { isAuthenticated } from '../../state/is-authenticated'
 import SignInFooter from '../SignInFooter'
 
 export default function EmailSignInForm() {
   const navigation = useNavigation<AuthStackParamList>()
   const [passwordVisible, setPasswordVisible] = useState(false)
+  const setIsAuthenticated = useSetRecoilState(isAuthenticated)
   const service = new AuthenticationService()
   const {
     handleSubmit,
@@ -29,13 +32,15 @@ export default function EmailSignInForm() {
   })
 
   const { mutate, error, isLoading } = useMutation(
-    (data: SignInRequest) => service.signIn(data),
+    (data: SignInRequest) => {
+      return service.signIn(data)
+    },
     {
       onSuccess: async (response) => {
-        console.log(response.data)
+        setIsAuthenticated(true)
       },
       onError: (error: AxiosError<BaseHttpError>) => {
-        console.log(error.response?.data)
+        console.log(error.response?.data.message)
       },
     },
   )

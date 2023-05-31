@@ -1,8 +1,10 @@
+import { useRecoilValue } from 'recoil'
 import AuthRoutes from '../../modules/authentication/routes'
+import { isAuthenticated } from '../../modules/authentication/state/is-authenticated'
 import AppRoutes from './app-route'
 
 export default function Router() {
-  const isAuthenticated = false // TODO: implement authentication
+  const isAuth = useRecoilValue(isAuthenticated) // TODO: implement authentication
 
-  return isAuthenticated ? <AppRoutes /> : <AuthRoutes />
+  return isAuth ? <AppRoutes /> : <AuthRoutes />
 }

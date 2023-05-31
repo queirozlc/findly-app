@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import { useMutation } from 'react-query'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import Button from '../../../../shared/components/Button'
 import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
 import { BaseHttpError } from '../../../../shared/errors/BaseHttpError'
@@ -16,12 +16,14 @@ import {
   FormDateOfBirthProps,
 } from '../../schemas/sign-up-form'
 import { createUserState } from '../../state/create-user-state'
+import { isAuthenticated } from '../../state/is-authenticated'
 import { dateMaskOptions } from '../CompleteSignUpServiceProviderForm/date-mask-options'
 
 export default function CustomerBirthDateForm() {
   const navigation = useNavigation<AuthStackParamList>()
   const signUpCustomerRequest = useRecoilValue(createUserState)
   const customerService = new CostumerApiService()
+  const setIsAuthenticated = useSetRecoilState(isAuthenticated)
   const {
     handleSubmit,
     control,
@@ -35,10 +37,12 @@ export default function CustomerBirthDateForm() {
     error,
   } = useMutation(
     (data: CreateCostumerRequest) => customerService.createCostumer(data),
-
     {
       onError: (error: AxiosError<BaseHttpError>) => {
         console.log(error.response?.data)
+      },
+      onSuccess: () => {
+        setIsAuthenticated(true)
       },
     },
   )
