@@ -4,19 +4,19 @@ import {
   GOOGLE_OAUTH_RESPONSE_TYPE,
   GOOGLE_OAUTH_SCOPE,
 } from '@env'
+import { AxiosError } from 'axios'
 import * as AuthSession from 'expo-auth-session'
-import { createContext, ReactNode, useState } from 'react'
+import { ReactNode, createContext, useState } from 'react'
 import { SignInRequest } from '../../../shared/types/sign-in-request'
 import { SignInResponse } from '../../../shared/types/sign-in-response'
 import { User } from '../../../shared/types/user'
-import { AuthenticationService } from '../infra/service/authentication-service'
+import { VerificationCode } from '../../../shared/types/verification-code'
 import { CreateCostumerRequest } from '../../costumer/api/dtos/create-costumer-request'
 import { CostumerApiService } from '../../costumer/api/services/costumer-api'
-import { AxiosError } from 'axios'
-import { VerificationCodeRequest } from '../infra/dtos/verification-code-request'
-import { GoogleOAuthResponse } from '../infra/dtos/google-oauth-response'
-import { VerificationCode } from '../../../shared/types/verification-code'
 import { CreateServiceProviderRequest } from '../../service-provider/api/create-service-provider/create-service-provider-request'
+import { GoogleOAuthResponse } from '../infra/dtos/google-oauth-response'
+import { VerificationCodeRequest } from '../infra/dtos/verification-code-request'
+import { AuthenticationService } from '../infra/service/authentication-service'
 
 export interface AuthenticationContextProps {
   isAuthenticated: boolean

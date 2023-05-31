@@ -21,14 +21,15 @@ import { useCallback, useEffect, useState } from 'react'
 import { View } from 'react-native'
 import 'react-native-gesture-handler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 import AuthenticationContext from './src/modules/authentication/contexts/authentication-context'
 import Router from './src/shared/routes'
-import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
-  const queryClient = new QueryClient()
 
   useEffect(() => {
     async function prepare() {

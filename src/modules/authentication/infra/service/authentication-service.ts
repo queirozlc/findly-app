@@ -13,7 +13,9 @@ export class AuthenticationService extends ApiService {
     email,
     password,
   }: SignInRequest): Promise<AxiosResponse<SignInResponse>> {
-    return this.post(this.url, { email, password })
+    const response = await this.post(this.url, { email, password })
+    console.log(response)
+    return response
   }
 
   async signInWithGoogle(): Promise<AxiosResponse<SignInResponse>> {

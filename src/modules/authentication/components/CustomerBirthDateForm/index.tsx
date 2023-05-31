@@ -4,7 +4,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import { useMutation } from 'react-query'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import Button from '../../../../shared/components/Button'
 import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
 import { VerificationCode } from '../../../../shared/types/verification-code'
@@ -20,7 +20,8 @@ import { dateMaskOptions } from '../CompleteSignUpServiceProviderForm/date-mask-
 
 export default function CustomerBirthDateForm() {
   const navigation = useNavigation<AuthStackParamList>()
-  const setSignUpCustomerRequest = useSetRecoilState(createUserState)
+  const [signUpCustomerRequest, setSignUpCustomerRequest] =
+    useRecoilState(createUserState)
   const customerService = new CostumerApiService()
   const {
     handleSubmit,
@@ -29,14 +30,20 @@ export default function CustomerBirthDateForm() {
   } = useForm<FormDateOfBirthProps>({
     resolver: zodResolver(DateOfBirthSchema),
   })
-  const {} = useMutation<
+  const { mutate } = useMutation<
     AxiosResponse<VerificationCode>,
     AxiosError<any>,
     any,
     any
   >({
-    mutationFn(data: CreateCostumerRequest) {
-      return customerService.createCostumer(data)
+    mutationKey: 'signUpCustomer',
+    mutationFn: async (signUpCustomerRequest: CreateCostumerRequest) => {
+      const response = await customerService.createCostumer(
+        signUpCustomerRequest,
+      )
+
+      console.log(response)
+      return response
     },
   })
 
@@ -45,6 +52,7 @@ export default function CustomerBirthDateForm() {
       ...prev,
       birthDate: data.birthDate,
     }))
+    mutate(signUpCustomerRequest)
   }
 
   return (
