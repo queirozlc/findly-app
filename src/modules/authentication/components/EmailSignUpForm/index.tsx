@@ -8,14 +8,11 @@ import { useSetRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
 import ControlledInput from '../../../../shared/components/ControlledInput'
-import useAuthenticationContext from '../../hooks/useAuthenticationContext'
 import { AuthStackParamList } from '../../routes/types'
 import { SignUpFormProps, SignUpFormSchema } from '../../schemas/sign-up-form'
 import { createUserState } from '../../state/create-user-state'
-import { verificationCodeState } from '../../state/verification-code-state'
 
 export default function EmailSignUpForm() {
-  const { createCostumer, isLoading } = useAuthenticationContext()
   const navigation = useNavigation<AuthStackParamList>()
   const [passwordVisible, setPasswordVisible] = useState(false)
   const {
@@ -26,7 +23,6 @@ export default function EmailSignUpForm() {
     resolver: zodResolver(SignUpFormSchema),
   })
   const setCreateUserState = useSetRecoilState(createUserState)
-  const setVerificationCodeState = useSetRecoilState(verificationCodeState)
 
   async function handleSignUp(data: SignUpFormProps) {
     if (!isValid) return
@@ -97,7 +93,6 @@ export default function EmailSignUpForm() {
             textStyles={{ textTransform: 'uppercase' }}
             onPress={handleSubmit(handleSignUp)}
             disabled={isDirty && !isValid}
-            isLoading={isLoading}
           />
         </View>
 

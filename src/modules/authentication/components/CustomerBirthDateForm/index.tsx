@@ -1,13 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigation } from '@react-navigation/native'
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
 import { useMutation } from 'react-query'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import Button from '../../../../shared/components/Button'
 import ControlledInputMask from '../../../../shared/components/ControlledInputMask'
-import { VerificationCode } from '../../../../shared/types/verification-code'
+import { BaseHttpError } from '../../../../shared/errors/BaseHttpError'
 import { CreateCostumerRequest } from '../../../costumer/api/dtos/create-costumer-request'
 import { CostumerApiService } from '../../../costumer/api/services/costumer-api'
 import { AuthStackParamList } from '../../routes/types'
@@ -20,8 +20,7 @@ import { dateMaskOptions } from '../CompleteSignUpServiceProviderForm/date-mask-
 
 export default function CustomerBirthDateForm() {
   const navigation = useNavigation<AuthStackParamList>()
-  const [signUpCustomerRequest, setSignUpCustomerRequest] =
-    useRecoilState(createUserState)
+  const signUpCustomerRequest = useRecoilValue(createUserState)
   const customerService = new CostumerApiService()
   const {
     handleSubmit,
@@ -30,29 +29,29 @@ export default function CustomerBirthDateForm() {
   } = useForm<FormDateOfBirthProps>({
     resolver: zodResolver(DateOfBirthSchema),
   })
-  const { mutate } = useMutation<
-    AxiosResponse<VerificationCode>,
-    AxiosError<any>,
-    any,
-    any
-  >({
-    mutationKey: 'signUpCustomer',
-    mutationFn: async (signUpCustomerRequest: CreateCostumerRequest) => {
-      const response = await customerService.createCostumer(
-        signUpCustomerRequest,
-      )
+  const {
+    mutate,
+    data: response,
+    error,
+  } = useMutation(
+    (data: CreateCostumerRequest) => customerService.createCostumer(data),
 
-      console.log(response)
-      return response
+    {
+      onError: (error: AxiosError<BaseHttpError>) => {
+        console.log(error.response?.data)
+      },
     },
-  })
+  )
 
-  async function onSubmit(data: FormDateOfBirthProps) {
-    setSignUpCustomerRequest((prev) => ({
-      ...prev,
-      birthDate: data.birthDate,
-    }))
-    mutate(signUpCustomerRequest)
+  async function onSubmit({ birthDate }: FormDateOfBirthProps) {
+    mutate({
+      ...signUpCustomerRequest,
+      birthDate,
+    })
+
+    if (response) {
+      navigation.replace('VerifyEmail', { code: response.data.code })
+    }
   }
 
   return (
