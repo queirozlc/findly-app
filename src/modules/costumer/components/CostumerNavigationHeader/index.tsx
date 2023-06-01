@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import { AppNavigationProps } from '../../../../shared/routes/app-route-type'
 
 const filterIcon = require('../../../../../assets/filter_icon.png')
@@ -8,9 +8,9 @@ export default function CostumerNavigationHeader() {
   const navigation = useNavigation<AppNavigationProps>()
 
   return (
-    <View className="bg-white items-center py-5 px-7 ">
+    <SafeAreaView className="bg-white items-center py-6 px-6">
       <TouchableOpacity
-        className="flex-row items-center h-16 px-6 rounded-full justify-between w-full bg-white"
+        className="flex-row items-center h-16 px-6 rounded-full w-full max-w-sm justify-between bg-white"
         activeOpacity={0.9}
         style={{
           shadowColor: '#000',
@@ -42,6 +42,6 @@ export default function CostumerNavigationHeader() {
           />
         </TouchableOpacity>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   )
 }

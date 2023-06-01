@@ -8,7 +8,6 @@ export default function CostumerBestSellerStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        statusBarStyle: 'dark',
         headerShown: false,
       }}
     >

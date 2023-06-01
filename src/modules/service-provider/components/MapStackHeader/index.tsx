@@ -11,9 +11,9 @@ export default function MapStackHeader({ title }: Props) {
   const navigation = useNavigation<MapStackNavigationProp>()
 
   return (
-    <SafeAreaView className="bg-primary-500 py-3 items-center">
+    <SafeAreaView className="bg-primary-500 items-center">
       <View className=" w-full flex-row relative justify-center items-center">
-        <Text className="text-xl font-inter-black text-zinc-800">{title}</Text>
+        <Text className="text-2xl font-inter-black text-zinc-800">{title}</Text>
         <TouchableOpacity
           className="absolute left-4"
           activeOpacity={0.8}
@@ -22,7 +22,7 @@ export default function MapStackHeader({ title }: Props) {
           <Image
             source={require('../../../../../assets/chevron_back.png')}
             resizeMode="contain"
-            className=" h-7 w-7"
+            className=" h-10 w-10"
           />
         </TouchableOpacity>
       </View>

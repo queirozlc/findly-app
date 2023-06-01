@@ -27,9 +27,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     infoPlist: {
       UIBackgroundModes: ['location', 'fetch'],
-      UIViewControllerBasedStatusBarAppearance: false,
-      UIStatusBarStyle: 'light-content',
-      UIStatusBarHidden: false,
     },
   },
   android: {

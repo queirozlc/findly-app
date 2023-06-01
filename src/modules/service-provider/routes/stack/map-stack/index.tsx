@@ -10,8 +10,6 @@ export default function MapStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: true,
-        statusBarTranslucent: true,
-        statusBarStyle: 'dark',
         header() {
           return <MapStackHeader title="Map" />
         },

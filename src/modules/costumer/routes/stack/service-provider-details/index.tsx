@@ -21,7 +21,6 @@ export default function ServiceProviderDetailsStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        statusBarTranslucent: true,
       }}
     >
       <Stack.Screen name="Details" component={ServiceProviderDetailsScreen} />
@@ -32,7 +31,6 @@ export default function ServiceProviderDetailsStack() {
           header() {
             return <OrderDetailsScreenHeader title="Order Details" />
           },
-          statusBarStyle: 'dark',
         }}
         name="OrderDetails"
         component={OrderDetailsScreen}
@@ -43,7 +41,6 @@ export default function ServiceProviderDetailsStack() {
           header() {
             return <OrderDetailsScreenHeader title="Confirm your Address" />
           },
-          statusBarStyle: 'dark',
         }}
         name="AddressConfirmation"
         component={AddressConfirmationScreen}

@@ -9,7 +9,6 @@ export default function AcceptedOrdersStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        statusBarStyle: 'dark',
       }}
     >
       <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />

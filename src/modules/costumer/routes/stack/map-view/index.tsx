@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import MapStackHeader from '../../../../service-provider/components/MapStackHeader'
 import MapViewScreen from '../../../screens/MapViewScreen'
 import { MapViewStackParamList } from './types'
 
@@ -8,8 +9,9 @@ export default function MapViewStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
-        statusBarStyle: 'dark',
+        header() {
+          return <MapStackHeader title="Find A Service" />
+        },
       }}
     >
       <Stack.Screen name="MapView" component={MapViewScreen} />
