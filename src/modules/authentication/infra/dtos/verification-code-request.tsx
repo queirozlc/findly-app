@@ -1,3 +1,4 @@
 export type VerificationCodeRequest = {
-  code: string
+  token: string
+  email: string
 }

@@ -1,8 +1,8 @@
+import { API_URL } from '@env'
 import axios, { AxiosResponse } from 'axios'
 
 const app = axios.create({
-  baseURL: 'http://localhost:3000',
-  withCredentials: true,
+  baseURL: API_URL,
 })
 
 export abstract class ApiService {

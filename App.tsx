@@ -14,19 +14,13 @@ import {
   Poppins_700Bold,
   Poppins_800ExtraBold,
 } from '@expo-google-fonts/poppins'
-import { NavigationContainer } from '@react-navigation/native'
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect, useState } from 'react'
 import { View } from 'react-native'
 import 'react-native-gesture-handler'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { RecoilRoot } from 'recoil'
-import AuthenticationContext from './src/modules/authentication/contexts/authentication-context'
 import Router from './src/shared/routes'
-
-const queryClient = new QueryClient()
+import { Providers } from './src/shared/lib/Providers'
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -70,18 +64,10 @@ export default function App() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <QueryClientProvider client={queryClient}>
-          <AuthenticationContext>
-            <RecoilRoot>
-              <View onLayout={onLayout} className="flex-1">
-                <Router />
-              </View>
-            </RecoilRoot>
-          </AuthenticationContext>
-        </QueryClientProvider>
-      </NavigationContainer>
-    </GestureHandlerRootView>
+    <Providers>
+      <View onLayout={onLayout} className="flex-1">
+        <Router />
+      </View>
+    </Providers>
   )
 }

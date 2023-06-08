@@ -1,11 +1,11 @@
-import { ApiService } from '../../../../shared/services/api-service'
-import { CreateCostumerRequest } from '../dtos/create-costumer-request'
 import { AxiosResponse } from 'axios'
+import { ApiService } from '../../../../shared/services/api-service'
 import { VerificationCode } from '../../../../shared/types/verification-code'
+import { CreateCostumerRequest } from '../dtos/create-costumer-request'
 
 export class CostumerApiService extends ApiService {
   constructor() {
-    super('costumers')
+    super('customers')
   }
 
   createCostumer(

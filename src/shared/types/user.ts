@@ -31,4 +31,5 @@ export type User = {
   profileImage: string
   name: string
   roles: Role[]
+  token: string
 }

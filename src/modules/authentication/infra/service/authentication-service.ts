@@ -20,9 +20,10 @@ export class AuthenticationService extends ApiService {
     return this.get(`${this.url}/google`)
   }
 
-  async verifyCode({
-    code,
+  async verifyEmail({
+    token,
+    email,
   }: VerificationCodeRequest): Promise<AxiosResponse<void>> {
-    return this.post(`/email/verify`, { code })
+    return this.post(`/email/verify`, { token, email })
   }
 }

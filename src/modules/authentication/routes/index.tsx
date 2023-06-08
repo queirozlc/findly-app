@@ -39,6 +39,15 @@ export default function AuthRoutes() {
         name="VerificationComplete"
         component={VerificationCompleteScreen}
       />
+      <Stack.Screen
+        name="CustomerBirthDate"
+        component={CustomerBirthDateScreen}
+        options={{
+          header() {
+            return <AuthBanner />
+          },
+        }}
+      />
 
       {/*
         Routes to be used by service providers only.
@@ -62,16 +71,6 @@ export default function AuthRoutes() {
         <Stack.Screen
           name={'RegisterServiceProviderPhone'}
           component={RegisterServiceProviderPhoneScreen}
-        />
-
-        <Stack.Screen
-          name="CustomerBirthDate"
-          component={CustomerBirthDateScreen}
-          options={{
-            header() {
-              return <AuthBanner />
-            },
-          }}
         />
       </Stack.Group>
     </Stack.Navigator>

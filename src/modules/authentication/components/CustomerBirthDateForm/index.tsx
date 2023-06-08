@@ -17,6 +17,7 @@ import {
 } from '../../schemas/sign-up-form'
 import { createUserState } from '../../state/create-user-state'
 import { isAuthenticated } from '../../state/is-authenticated'
+import { verificationCodeState } from '../../state/verification-code-state'
 import { dateMaskOptions } from '../CompleteSignUpServiceProviderForm/date-mask-options'
 
 export default function CustomerBirthDateForm() {
@@ -24,6 +25,7 @@ export default function CustomerBirthDateForm() {
   const signUpCustomerRequest = useRecoilValue(createUserState)
   const customerService = new CostumerApiService()
   const setIsAuthenticated = useSetRecoilState(isAuthenticated)
+  const setVerificationCode = useSetRecoilState(verificationCodeState)
   const {
     handleSubmit,
     control,
@@ -39,10 +41,14 @@ export default function CustomerBirthDateForm() {
     (data: CreateCostumerRequest) => customerService.createCostumer(data),
     {
       onError: (error: AxiosError<BaseHttpError>) => {
-        console.log(error.response?.data)
+        console.log(error.response?.data.message)
       },
-      onSuccess: () => {
-        setIsAuthenticated(true)
+      onSuccess({ data }) {
+        setVerificationCode({
+          code: data.code,
+        })
+
+        navigation.replace('VerifyEmail', { code: data.code })
       },
     },
   )
@@ -52,10 +58,6 @@ export default function CustomerBirthDateForm() {
       ...signUpCustomerRequest,
       birthDate,
     })
-
-    if (response) {
-      navigation.replace('VerifyEmail', { code: response.data.code })
-    }
   }
 
   return (
@@ -70,10 +72,10 @@ export default function CustomerBirthDateForm() {
         <ControlledInputMask
           type={'datetime'}
           options={dateMaskOptions}
-          label={'Birth date *'}
+          label={'Data de nascimento *'}
           control={control}
           name={'birthDate'}
-          placeholder={'Enter your birth date: DD/MM/YYYY'}
+          placeholder={'Digite sua data de nascimento: DD/MM/YYYY'}
           hasError={!!(errors.birthDate && isDirty && !isValid)}
           error={errors.birthDate}
           keyboardType={'numeric'}

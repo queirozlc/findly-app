@@ -1,22 +1,38 @@
-import { Image, Text, View } from 'react-native'
-import OptInputBox from './OptInputBox'
-import { useState } from 'react'
-import Button from '../../../../shared/components/Button'
-import useAuthenticationContext from '../../hooks/useAuthenticationContext'
 import { AxiosError } from 'axios'
+import { useState } from 'react'
+import { Image, Text, View } from 'react-native'
+import { useMutation } from 'react-query'
+import { useRecoilValue } from 'recoil'
+import Button from '../../../../shared/components/Button'
+import { BaseHttpError } from '../../../../shared/errors/BaseHttpError'
+import { VerificationCodeRequest } from '../../infra/dtos/verification-code-request'
+import { createUserState } from '../../state/create-user-state'
+import { verificationCodeState } from '../../state/verification-code-state'
+import OptInputBox from './OptInputBox'
+import { VerifyEmail } from '../../infra/service/VerifyEmail'
 
-type EmailVerifyInputProps = {
-  verificationCode: string
-}
-
-export default function EmailVerifyInput({
-  verificationCode,
-}: EmailVerifyInputProps) {
-  // TODO: need to implement this api call
-  const { verifyCode, isLoading } = useAuthenticationContext()
+export default function EmailVerifyInput() {
   const [internalValues, setInternalValues] = useState<string[]>([])
   const [validationError, setValidationError] = useState<string | null>(null)
   const [nextInputIndex, setNextInputIndex] = useState<number | null>(null)
+  const { code: verificationCode } = useRecoilValue(verificationCodeState)
+  const createdUser = useRecoilValue(createUserState)
+
+  const { mutate } = useMutation(
+    (data: VerificationCodeRequest) => {
+      const service = new VerifyEmail()
+      return service.verifyEmail(data.token, data.email)
+    },
+    {
+      onSuccess({ data }) {
+        console.log(data)
+      },
+      onError(error) {
+        const err = error as AxiosError<BaseHttpError>
+        console.log(err.response?.data.message)
+      },
+    },
+  )
 
   function handleNextInput(text: string, index: number) {
     let newInputIndex: number
@@ -43,15 +59,11 @@ export default function EmailVerifyInput({
     const enteredCode = internalValues.join('')
     if (enteredCode !== verificationCode) {
       setValidationError('Code is incorrect')
-    }
-
-    try {
-      await verifyCode({ code: enteredCode })
-    } catch (error) {
-      const { response } = error as AxiosError
-      if (response?.status === 400) {
-        setValidationError('Code is incorrect')
-      }
+    } else {
+      mutate({
+        token: enteredCode,
+        email: createdUser.email,
+      })
     }
   }
 
