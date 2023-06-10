@@ -5,6 +5,7 @@ import CostumerTabNavigator from '../../modules/costumer/routes/tab'
 import ServiceProviderTabNavigator from '../../modules/service-provider/routes/service-provider-tab'
 import MapStack from '../../modules/service-provider/routes/stack/map-stack'
 import { AppStackParamList } from './app-route-type'
+import { useAuth } from '../../modules/authentication/hooks/useAuth'
 
 enum RoleName {
   COSTUMER = 'COSTUMER',
@@ -15,7 +16,8 @@ enum RoleName {
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 export default function AppRoutes() {
-  const roles = [RoleName.COSTUMER] // TODO: implement authentication
+  const { user } = useAuth()
+  const roles = user?.roles
 
   return (
     <Stack.Navigator
@@ -23,8 +25,8 @@ export default function AppRoutes() {
         headerShown: false,
       }}
     >
-      {roles.includes(RoleName.COSTUMER) && (
-        <>
+      {roles?.includes(RoleName.COSTUMER) && (
+        <Stack.Group>
           <Stack.Screen
             name="CostumerTabNavigator"
             component={CostumerTabNavigator}
@@ -33,27 +35,27 @@ export default function AppRoutes() {
             name="CostumerServiceProviderDetailsStack"
             component={ServiceProviderDetailsStack}
           />
-        </>
+          <Stack.Screen
+            options={{
+              headerShown: false,
+              animation: 'slide_from_bottom',
+            }}
+            name="MapViewStack"
+            component={MapViewStack}
+          />
+        </Stack.Group>
       )}
 
-      {roles.includes(RoleName.SERVICE_PROVIDER) && (
-        <>
+      {roles?.includes(RoleName.SERVICE_PROVIDER) && (
+        <Stack.Group>
           <Stack.Screen
             name="ServiceProviderTabNavigator"
             component={ServiceProviderTabNavigator}
           />
 
           <Stack.Screen name="ServiceProviderMapStack" component={MapStack} />
-        </>
+        </Stack.Group>
       )}
-      <Stack.Screen
-        options={{
-          headerShown: false,
-          animation: 'slide_from_bottom',
-        }}
-        name="MapViewStack"
-        component={MapViewStack}
-      />
     </Stack.Navigator>
   )
 }

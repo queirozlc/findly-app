@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Text, View } from 'react-native'
 import { useSetRecoilState } from 'recoil'
 import { notificationBottomSheetIndexState } from '../../store/atoms/notifications-bottom-sheet-index'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function ServiceProviderHomeHeader() {
   const setNotificationsBottomSheetIndex = useSetRecoilState(
@@ -19,12 +20,12 @@ export default function ServiceProviderHomeHeader() {
   }
 
   return (
-    <View className="justify-center items-center flex-row relative py-3.5 bg-white">
+    <SafeAreaView className="justify-center items-center flex-row relative py-1.5 bg-white">
       <Text className="text-lg font-inter-black text-zinc-800">
         Today's Orders
       </Text>
 
-      <View className="absolute right-4 top-4">
+      <SafeAreaView className="absolute right-4 top-2">
         <View className="relative">
           <Ionicons
             name="ios-notifications-outline"
@@ -36,7 +37,7 @@ export default function ServiceProviderHomeHeader() {
             <View className="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-yellow-500 rounded-full flex items-center justify-center" />
           )}
         </View>
-      </View>
-    </View>
+      </SafeAreaView>
+    </SafeAreaView>
   )
 }

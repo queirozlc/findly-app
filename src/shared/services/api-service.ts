@@ -10,6 +10,18 @@ export abstract class ApiService {
     this.url = url
   }
 
+  public static registerJwtInterceptor(token: string): void {
+    app.interceptors.request.use(
+      async (config) => {
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`
+        }
+        return config
+      },
+      (error) => Promise.reject(error),
+    )
+  }
+
   post(requestUrl: string, body: unknown): Promise<AxiosResponse> {
     return app.post(`${this.url}${requestUrl}`, body)
   }

@@ -29,6 +29,7 @@
     "expo-location": "~15.1.1",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
+    "jwt-decode": "^3.1.2",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-hook-form": "^7.43.9",

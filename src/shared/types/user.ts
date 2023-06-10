@@ -20,16 +20,11 @@ export enum RoleName {
   COSTUMER = 'COSTUMER',
 }
 
-export interface Role {
-  id: string
-  name: RoleName
-}
-
 export type User = {
   id: string
   email: string
   profileImage: string
   name: string
-  roles: Role[]
+  roles: RoleName[]
   token: string
 }

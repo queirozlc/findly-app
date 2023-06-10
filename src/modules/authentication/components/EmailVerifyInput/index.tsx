@@ -10,8 +10,11 @@ import { createUserState } from '../../state/create-user-state'
 import { verificationCodeState } from '../../state/verification-code-state'
 import OptInputBox from './OptInputBox'
 import { VerifyEmail } from '../../infra/service/VerifyEmail'
+import { useNavigation } from '@react-navigation/native'
+import { AuthStackParamList } from '../../routes/types'
 
 export default function EmailVerifyInput() {
+  const navigation = useNavigation<AuthStackParamList>()
   const [internalValues, setInternalValues] = useState<string[]>([])
   const [validationError, setValidationError] = useState<string | null>(null)
   const [nextInputIndex, setNextInputIndex] = useState<number | null>(null)
@@ -24,8 +27,8 @@ export default function EmailVerifyInput() {
       return service.verifyEmail(data.token, data.email)
     },
     {
-      onSuccess({ data }) {
-        console.log(data)
+      onSuccess() {
+        navigation.replace('VerificationComplete')
       },
       onError(error) {
         const err = error as AxiosError<BaseHttpError>

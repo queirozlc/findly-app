@@ -14,7 +14,8 @@ import SignInFooter from '../SignInFooter'
 import { useAuth } from '../../hooks/useAuth'
 
 export default function EmailSignInForm() {
-  const { signIn: signInMutation, error, loading: isLoading } = useAuth()
+  const [isLoading] = useState(false)
+  const { signIn: signInMutation, error } = useAuth()
   const navigation = useNavigation<AuthStackParamList>()
   const [passwordVisible, setPasswordVisible] = useState(false)
   const {
