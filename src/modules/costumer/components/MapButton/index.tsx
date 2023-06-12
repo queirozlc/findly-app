@@ -24,7 +24,7 @@ export default function MapButton() {
           }}
         >
           <Button
-            title="Map"
+            title="Mapa"
             icon={<Ionicons name="md-map" size={20} color="white" />}
             variant="mapButton"
             textStyles={{ fontSize: 16 }}

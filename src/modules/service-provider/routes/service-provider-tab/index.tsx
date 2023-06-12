@@ -4,7 +4,7 @@ import colors from 'tailwindcss/colors'
 import ServiceProviderHomeHeader from '../../components/ServiceProviderHomeHeader'
 import ServiceProviderTopTab from '../service-provider-top-tab'
 import { ServiceProviderTabStackParamList } from './types'
-import RegisterServiceScreen from '../../screens/RegisterServiceScreen'
+import RegisterServiceStack from '../stack/register-service'
 
 const Tab = createBottomTabNavigator<ServiceProviderTabStackParamList>()
 
@@ -12,7 +12,6 @@ export default function ServiceProviderTabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        header: () => <ServiceProviderHomeHeader />,
         tabBarInactiveTintColor: colors.zinc['400'],
         tabBarActiveTintColor: colors.yellow['500'],
         tabBarLabelStyle: {
@@ -23,7 +22,8 @@ export default function ServiceProviderTabNavigator() {
     >
       <Tab.Screen
         options={{
-          tabBarLabel: 'Home',
+          header: () => <ServiceProviderHomeHeader />,
+          tabBarLabel: 'Início',
           tabBarIcon({ color, size }) {
             return <Feather name="home" size={size} color={color} />
           },
@@ -34,13 +34,14 @@ export default function ServiceProviderTabNavigator() {
 
       <Tab.Screen
         options={{
-          tabBarLabel: 'Register Service',
+          headerShown: false,
+          tabBarLabel: 'Novo Serviço',
           tabBarIcon({ color, size }) {
             return <AntDesign name="carryout" size={size} color={color} />
           },
         }}
         name={'RegisterService'}
-        component={RegisterServiceScreen}
+        component={RegisterServiceStack}
       />
     </Tab.Navigator>
   )

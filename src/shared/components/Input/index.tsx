@@ -27,6 +27,7 @@ export type InputProps = {
   onPressIn?: () => void
   editable?: boolean
   styles?: TextInputProps['style']
+  required?: boolean
 }
 
 export default function Input({
@@ -43,6 +44,7 @@ export default function Input({
   error,
   onFocus,
   onPressIn,
+  required,
   editable = true,
   styles,
 }: InputProps) {
@@ -54,7 +56,10 @@ export default function Input({
         className="space-y-2 justify-center"
         style={{ position: 'relative' }}
       >
-        <Text className="text-base font-inter-medium text-left">{label}</Text>
+        <Text className="text-base font-inter-medium text-left">
+          {label} {''}
+          {required && <Text className="text-error-500">*</Text>}
+        </Text>
         <TextInput
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
