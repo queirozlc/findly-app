@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import colors from 'tailwindcss/colors'
 import ServiceProviderHomeHeader from '../../components/ServiceProviderHomeHeader'
 import ServiceProviderTopTab from '../service-provider-top-tab'
-import { ServiceProviderTabStackParamList } from './types'
 import RegisterServiceStack from '../stack/register-service'
+import { ServiceProviderTabStackParamList } from './types'
 
 const Tab = createBottomTabNavigator<ServiceProviderTabStackParamList>()
 
@@ -17,6 +17,11 @@ export default function ServiceProviderTabNavigator() {
         tabBarLabelStyle: {
           fontFamily: 'Inter_600SemiBold',
           fontSize: 14,
+        },
+        tabBarStyle: {
+          height: 80,
+          alignItems: 'center',
+          justifyContent: 'center',
         },
       }}
     >
