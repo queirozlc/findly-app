@@ -4,8 +4,7 @@
     "strict": true,
     "typeRoots": ["./src/@types"],
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["node"]
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules"]
 }
