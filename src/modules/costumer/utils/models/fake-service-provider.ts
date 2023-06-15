@@ -1,6 +1,6 @@
 import { ServiceProviderData } from './abstract-service-provider-presenter'
 
-interface FakeServiceProvider extends ServiceProviderData {}
+type FakeServiceProvider = ServiceProviderData
 
 export const fakeServiceProvider: FakeServiceProvider[] = [
   {
