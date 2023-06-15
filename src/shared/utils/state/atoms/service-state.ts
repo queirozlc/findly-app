@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { ServiceData } from '../../../../modules/costumer/utils/view-model/abstract-service-presenter'
+import { ServiceData } from '../../../../modules/costumer/utils/models/abstract-service-presenter'
 
 const initialState: ServiceData = {
   id: '',

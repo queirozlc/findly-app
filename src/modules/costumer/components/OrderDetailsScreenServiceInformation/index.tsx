@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { ServiceProviderDetailsNavigationProps } from '../../routes/stack/service-provider-details/type'
-import { ServiceData } from '../../utils/view-model/abstract-service-presenter'
+import { ServiceData } from '../../utils/models/abstract-service-presenter'
 
 interface Props {
   order: ServiceData

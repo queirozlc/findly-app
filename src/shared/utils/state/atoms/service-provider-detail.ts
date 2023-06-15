@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { ServiceProviderData } from '../../../../modules/costumer/utils/view-model/abstract-service-provider-presenter'
+import { ServiceProviderData } from '../../../../modules/costumer/utils/models/abstract-service-provider-presenter'
 
 const serviceProviderDetailState = atom<ServiceProviderData | null>({
   key: 'serviceProviderDetail',

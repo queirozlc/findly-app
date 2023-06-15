@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, View } from 'react-native'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import { serviceProviderFavoriteState } from '../../../../shared/utils/state/atoms/service-provider-wish-state'
-import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
+import { ServiceProviderData } from '../../utils/models/abstract-service-provider-presenter'
 
 interface HomeCardProps {
   data: ServiceProviderData

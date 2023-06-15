@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { ServiceProviderDetailsStackParamList } from '../../modules/costumer/routes/stack/service-provider-details/type'
-import { ServiceProviderData } from '../../modules/costumer/utils/view-model/abstract-service-provider-presenter'
+import { ServiceProviderData } from '../../modules/costumer/utils/models/abstract-service-provider-presenter'
 
 export type AppStackParamList = {
   CostumerTabNavigator: undefined

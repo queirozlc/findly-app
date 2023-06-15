@@ -1,7 +1,7 @@
 import { AntDesign, Entypo } from '@expo/vector-icons'
 import { Text, View } from 'react-native'
 import colors from 'tailwindcss/colors'
-import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
+import { ServiceProviderData } from '../../utils/models/abstract-service-provider-presenter'
 
 interface HomeCardInfosProps {
   data: ServiceProviderData

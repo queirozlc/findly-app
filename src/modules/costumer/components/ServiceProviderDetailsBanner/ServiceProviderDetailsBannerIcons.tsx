@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import { serviceProviderFavoriteState } from '../../../../shared/utils/state/atoms/service-provider-wish-state'
 import { ServiceProviderDetailsNavigationProps } from '../../routes/stack/service-provider-details/type'
-import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
+import { ServiceProviderData } from '../../utils/models/abstract-service-provider-presenter'
 
 interface Props {
   data: ServiceProviderData

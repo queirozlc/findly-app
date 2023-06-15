@@ -8,8 +8,8 @@ import ServiceProviderDetailsBanner from '../../../components/ServiceProviderDet
 import ServiceProviderInfos from '../../../components/ServiceProviderInfos'
 import Services from '../../../components/Services'
 import { ServiceProviderDetailsStackParamList } from '../../../routes/stack/service-provider-details/type'
-import { ServiceData } from '../../../utils/view-model/abstract-service-presenter'
-import { fakeServiceData } from '../../../utils/view-model/fake-service'
+import { ServiceData } from '../../../utils/models/abstract-service-presenter'
+import { fakeServiceData } from '../../../utils/models/fake-service'
 
 type Props = NativeStackScreenProps<
   ServiceProviderDetailsStackParamList,

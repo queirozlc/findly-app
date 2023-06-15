@@ -3,7 +3,7 @@ import { Text, TextInput, View } from 'react-native'
 import { useSetRecoilState } from 'recoil'
 import colors from 'tailwindcss/colors'
 import { serviceProviderDetailState } from '../../../../shared/utils/state/atoms/service-provider-detail'
-import { ServiceProviderData } from '../../utils/view-model/abstract-service-provider-presenter'
+import { ServiceProviderData } from '../../utils/models/abstract-service-provider-presenter'
 
 interface HttpClient {
   get: (url: string) => Promise<ServiceProviderData>
