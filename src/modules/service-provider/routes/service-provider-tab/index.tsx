@@ -19,7 +19,6 @@ export default function ServiceProviderTabNavigator() {
           fontSize: 14,
         },
         tabBarStyle: {
-          height: 80,
           alignItems: 'center',
           justifyContent: 'center',
         },

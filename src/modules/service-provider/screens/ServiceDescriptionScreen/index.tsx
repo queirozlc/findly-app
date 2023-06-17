@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
 
 export default function ServiceDescriptionScreen() {
@@ -16,12 +17,13 @@ export default function ServiceDescriptionScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       className="flex-1 bg-white items-start"
     >
-      <View className="w-full flex-1 space-y-4">
+      <View className="w-full flex-1 space-y-6">
         <TextInput
-          className="w-full h-3/4 text-xl text-gray-700 placeholder-gray-400 border border-gray-300 focus:outline-none focus:border-indigo-500 px-4 py-2 font-poppins-medium "
-          placeholder="Describe your service"
+          className="w-full h-3/4 text-base text-gray-700 placeholder-gray-400 border border-gray-300 focus:outline-none focus:border-primary-500 px-4 py-2 font-poppins-medium "
+          placeholder="Descreva seu serviço"
           multiline
           numberOfLines={10}
+          cursorColor={colors.yellow['500']}
           onChangeText={(text) => setCounter(text.length)}
         />
 

@@ -1,9 +1,9 @@
 import { Ionicons } from '@expo/vector-icons'
 import { useState } from 'react'
 import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSetRecoilState } from 'recoil'
 import { notificationBottomSheetIndexState } from '../../store/atoms/notifications-bottom-sheet-index'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function ServiceProviderHomeHeader() {
   const setNotificationsBottomSheetIndex = useSetRecoilState(

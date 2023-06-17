@@ -23,6 +23,7 @@ export abstract class ApiService {
   }
 
   post(requestUrl: string, body: unknown): Promise<AxiosResponse> {
+    console.log(`${this.url}${requestUrl}`)
     return app.post(`${this.url}${requestUrl}`, body)
   }
 

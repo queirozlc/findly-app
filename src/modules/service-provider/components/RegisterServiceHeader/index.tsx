@@ -16,8 +16,8 @@ export default function RegisterServiceHeader({
   const navigation = useNavigation<RegisterServiceNavigationProps>()
 
   return (
-    <SafeAreaView className="justify-center flex-row-reverse bg-primary-500">
-      <Text className="text-2xl font-inter-black text-zinc-800 capitalize">
+    <SafeAreaView className="justify-center flex-row-reverse py-2 bg-primary-500">
+      <Text className="text-lg font-inter-black text-zinc-800 capitalize">
         {label}
       </Text>
 
@@ -29,7 +29,7 @@ export default function RegisterServiceHeader({
           >
             <Ionicons
               name="ios-chevron-back-circle-outline"
-              size={40}
+              size={32}
               color="black"
             />
           </TouchableOpacity>
