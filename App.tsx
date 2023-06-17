@@ -19,8 +19,8 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect, useState } from 'react'
 import { View } from 'react-native'
 import 'react-native-gesture-handler'
-import Router from './src/shared/routes'
 import { Providers } from './src/shared/lib/Providers'
+import Router from './src/shared/routes'
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
