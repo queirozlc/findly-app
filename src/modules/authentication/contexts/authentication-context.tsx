@@ -1,19 +1,17 @@
-import { User } from '../../../shared/types/user'
-import { SignInRequest } from '../../../shared/types/sign-in-request'
-import { createContext, ReactNode, useEffect, useState } from 'react'
-import { useSignIn } from '../hooks/useSignIn'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { ApiService } from '../../../shared/services/api-service'
+import { AxiosResponse } from 'axios'
 import jwtDecode from 'jwt-decode'
+import { createContext, ReactNode, useEffect, useState } from 'react'
+import { ApiService } from '../../../shared/services/api-service'
+import { SignInResponse } from '../../../shared/types/sign-in-response'
+import { User } from '../../../shared/types/user'
 import { JwtPayload } from '../infra/dtos/jwt-payload'
 
 type Output = {
   user: User | null
   isLogged: boolean
-  signIn: (input: SignInRequest) => Promise<void>
   signOut: () => Promise<void>
-  error?: string
-  loading?: boolean
+  handleSuccessLogin: (response: AxiosResponse<SignInResponse>) => Promise<void>
 }
 
 export const AuthenticationContext = createContext<Output>({} as Output)
@@ -24,23 +22,15 @@ type Props = {
 
 export default function AuthProvider({ children }: Props) {
   const [user, setUser] = useState<User | null>(null)
-  const [error, setError] = useState<string | undefined>(undefined)
-  const [loading, setLoading] = useState(true)
-  const { signInMutation, signInResponse, signInError, signInLoading } =
-    useSignIn()
 
-  async function signIn(input: SignInRequest): Promise<void> {
-    signInMutation(input)
-    if (!signInResponse) {
-      if (signInError) {
-        setError(signInError)
-      }
-      return
-    }
+  async function signOut() {
+    setUser(null)
+    await AsyncStorage.removeItem('@USER')
+  }
 
-    const payload = jwtDecode<JwtPayload>(signInResponse.data.token)
-
-    const { data } = signInResponse
+  async function handleSuccessLogin(response: AxiosResponse<SignInResponse>) {
+    const payload = jwtDecode<JwtPayload>(response.data.token)
+    const { data } = response
     setUser({
       ...data,
       roles: payload.roles,
@@ -48,11 +38,6 @@ export default function AuthProvider({ children }: Props) {
     })
     await AsyncStorage.setItem('@USER', JSON.stringify(data))
     ApiService.registerJwtInterceptor(data.token)
-  }
-
-  async function signOut() {
-    setUser(null)
-    await AsyncStorage.removeItem('@USER')
   }
 
   useEffect(() => {
@@ -75,10 +60,8 @@ export default function AuthProvider({ children }: Props) {
       value={{
         user,
         isLogged: !!user,
-        signIn,
         signOut,
-        error,
-        loading,
+        handleSuccessLogin,
       }}
     >
       {children}

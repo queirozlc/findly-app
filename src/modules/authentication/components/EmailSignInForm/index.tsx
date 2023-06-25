@@ -1,21 +1,25 @@
 import { Ionicons } from '@expo/vector-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigation } from '@react-navigation/native'
+import { AxiosError } from 'axios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Text, View } from 'react-native'
+import { useMutation } from 'react-query'
 import colors from 'tailwindcss/colors'
 import Button from '../../../../shared/components/Button'
 import ControlledInput from '../../../../shared/components/ControlledInput'
 import { SignInRequest } from '../../../../shared/types/sign-in-request'
+import { useAuth } from '../../hooks/useAuth'
+import { AuthenticationService } from '../../infra/service/authentication-service'
 import { AuthStackParamList } from '../../routes/types'
 import { SignInFormSchema, SignInFormValues } from '../../schemas/sign-in-form'
 import SignInFooter from '../SignInFooter'
-import { useAuth } from '../../hooks/useAuth'
 
 export default function EmailSignInForm() {
+  const authService = new AuthenticationService()
   const [isLoading] = useState(false)
-  const { signIn: signInMutation, error } = useAuth()
+  const { handleSuccessLogin } = useAuth()
   const navigation = useNavigation<AuthStackParamList>()
   const [passwordVisible, setPasswordVisible] = useState(false)
   const {
@@ -26,8 +30,25 @@ export default function EmailSignInForm() {
     resolver: zodResolver(SignInFormSchema),
   })
 
+  const { mutate, error } = useMutation(
+    'signIn',
+    (request: SignInRequest) => {
+      return authService.signIn(request)
+    },
+    {
+      onError: (error: AxiosError<any>) => {
+        console.log(error.response?.status)
+        console.log(error.response?.data)
+      },
+
+      onSuccess: (response) => {
+        handleSuccessLogin(response)
+      },
+    },
+  )
+
   async function signIn(data: SignInRequest) {
-    await signInMutation(data)
+    mutate(data)
   }
 
   return (
@@ -77,7 +98,7 @@ export default function EmailSignInForm() {
         {error && (
           <View className="flex flex-row justify-center">
             <Text className="text-base font-inter-medium text-error-500">
-              {error}
+              {error.response?.data}
             </Text>
           </View>
         )}

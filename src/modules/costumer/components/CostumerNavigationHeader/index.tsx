@@ -2,13 +2,11 @@ import { useNavigation } from '@react-navigation/native'
 import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import { AppNavigationProps } from '../../../../shared/routes/app-route-type'
 
-const filterIcon = require('../../../../../assets/filter_icon.png')
-
 export default function CostumerNavigationHeader() {
   const navigation = useNavigation<AppNavigationProps>()
 
   return (
-    <SafeAreaView className="bg-white items-center py-6 px-6">
+    <SafeAreaView className="bg-white items-center pt-10 px-6">
       <TouchableOpacity
         className="flex-row items-center h-16 px-6 rounded-full w-full max-w-sm justify-between bg-white"
         activeOpacity={0.9}
@@ -29,14 +27,16 @@ export default function CostumerNavigationHeader() {
           />
         </View>
         <View>
-          <Text className="text-sm font-poppins-medium">What do you need?</Text>
+          <Text className="text-sm font-poppins-medium">
+            O que você procura ?
+          </Text>
         </View>
         <TouchableOpacity
           className="p-2 border-2 border-lightest-gray-500 rounded-full active:bg-lightest-gray-500"
           activeOpacity={0.9}
         >
           <Image
-            source={filterIcon}
+            source={require('../../../../../assets/filter_icon.png')}
             style={{ resizeMode: 'contain' }}
             className="w-5 h-5"
           />

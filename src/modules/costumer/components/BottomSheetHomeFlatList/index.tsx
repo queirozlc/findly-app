@@ -6,7 +6,6 @@ import colors from 'tailwindcss/colors'
 import { mapState } from '../../../../shared/utils/state/atoms/map-state'
 import { ServiceProviderData } from '../../utils/models/abstract-service-provider-presenter'
 import { fakeServiceProvider } from '../../utils/models/fake-service-provider'
-import { BestSellerHeader } from '../BestSellerHeader'
 import HomeServiceProviderCards from '../HomeServiceProviderCards'
 import { Footer } from '../HomeServiceProviderCards/Footer'
 
@@ -51,7 +50,6 @@ export default function BottomSheetHomeFlatList() {
     >
       <BottomSheetFlatList
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={BestSellerHeader}
         ListFooterComponent={Footer}
         data={fakeServiceProvider}
         renderItem={renderItem}
