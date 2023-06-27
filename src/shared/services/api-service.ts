@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 
 const app = axios.create({
-  baseURL: 'http://192.168.100.153:3000',
+  baseURL: 'http://192.168.0.164:3000',
 })
 
 export abstract class ApiService {

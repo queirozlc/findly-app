@@ -6,6 +6,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'findly-app',
   scheme: 'findly-app',
   version: '1.0.0',
+  plugins: [
+    [
+      'expo-image-picker',
+      {
+        photosPermission:
+          'The app accesses your photos to let you share them with your friends.',
+      },
+    ],
+  ],
   splash: {
     image: './assets/logo.png',
     resizeMode: 'contain',
