@@ -16,7 +16,6 @@ import {
   FormDateOfBirthProps,
 } from '../../schemas/sign-up-form'
 import { createUserState } from '../../state/create-user-state'
-import { isAuthenticated } from '../../state/is-authenticated'
 import { verificationCodeState } from '../../state/verification-code-state'
 import { dateMaskOptions } from '../CompleteSignUpServiceProviderForm/date-mask-options'
 
@@ -24,7 +23,6 @@ export default function CustomerBirthDateForm() {
   const navigation = useNavigation<AuthStackParamList>()
   const signUpCustomerRequest = useRecoilValue(createUserState)
   const customerService = new CostumerApiService()
-  const setIsAuthenticated = useSetRecoilState(isAuthenticated)
   const setVerificationCode = useSetRecoilState(verificationCodeState)
   const {
     handleSubmit,

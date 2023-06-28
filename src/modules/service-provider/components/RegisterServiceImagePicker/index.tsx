@@ -20,7 +20,7 @@ export default function RegisterServiceImagePicker() {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 1,
-      aspect: [4, 3],
+      aspect: [16, 9],
     })
 
     if (!canceled) {
@@ -41,6 +41,8 @@ export default function RegisterServiceImagePicker() {
           }),
         ),
       )
+
+      console.log(fileName, extend, formData)
     }
   }
 
@@ -56,7 +58,11 @@ export default function RegisterServiceImagePicker() {
             Camera icon
           */}
         {image ? (
-          <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
+          <Image
+            source={{ uri: image }}
+            style={{ width: 120, height: 120 }}
+            className="rounded-2xl"
+          />
         ) : (
           <MaterialCommunityIcons
             name="camera-plus-outline"
@@ -67,7 +73,7 @@ export default function RegisterServiceImagePicker() {
       </TouchableOpacity>
 
       <Text className={'text-xl font-inter-medium text-zinc-800'}>
-        {image ? 'Imagem selecionada' : 'Selecione uma imagem'}
+        {!image && 'Selecione uma imagem'}
       </Text>
     </View>
   )
