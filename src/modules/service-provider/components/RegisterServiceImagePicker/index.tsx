@@ -25,11 +25,27 @@ export default function RegisterServiceImagePicker() {
 
     if (!canceled) {
       setImage(assets[0].uri)
+      const fileName = assets[0].uri.substring(
+        assets[0].uri.lastIndexOf('/') + 1,
+        assets[0].uri.length,
+      )
+      const extend = fileName.split('.')[1]
+      const formData = new FormData()
+      formData.append(
+        'file',
+        JSON.parse(
+          JSON.stringify({
+            name: fileName,
+            uri: assets[0].uri,
+            type: `image/${extend}`,
+          }),
+        ),
+      )
     }
   }
 
   return (
-    <View className={'items-center py-10 space-y-4'}>
+    <View className={'items-center pt-10 space-y-2'}>
       <TouchableOpacity
         className={
           'w-24 h-24 bg-lightest-gray-500 rounded-full flex items-center justify-center'

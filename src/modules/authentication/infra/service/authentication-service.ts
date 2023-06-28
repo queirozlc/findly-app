@@ -13,7 +13,7 @@ export class AuthenticationService extends ApiService {
     email,
     password,
   }: SignInRequest): Promise<AxiosResponse<SignInResponse>> {
-    return this.post('', { email, password })
+    return this.post('/login', { email, password })
   }
 
   async signInWithGoogle(): Promise<AxiosResponse<SignInResponse>> {

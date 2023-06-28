@@ -3,7 +3,7 @@ import Input from '../../../../shared/components/Input'
 
 export default function RegisterServiceInputs() {
   return (
-    <View className="space-y-6">
+    <View className="space-y-2">
       <View>
         <Input label={'Título do serviço'} required />
       </View>

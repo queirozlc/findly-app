@@ -11,7 +11,7 @@ export default function RegisterServiceScreen() {
         <RegisterServiceImagePicker />
       </View>
 
-      <View className={'px-4 space-y-6'}>
+      <View className={'px-4 space-y-2'}>
         <View className={'space-y-4'}>
           <View>
             <RegisterServiceInputs />
